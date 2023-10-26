@@ -6,7 +6,10 @@
   },
   "dependencies": {
     "@govuk-prototype-kit/common-templates": "1.2.2",
+    "@govuk-prototype-kit/task-list": "1.1.2",
     "govuk-frontend": "4.7.0",
-    "govuk-prototype-kit": "13.13.5"
+    "govuk-one-login-service-header": "github:alphagov/di-govuk-one-login-service-header",
+    "govuk-prototype-kit": "13.13.5",
+    "jquery": "3.7.1"
   }
 }
