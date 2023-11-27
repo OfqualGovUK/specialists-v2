@@ -1,0 +1,196 @@
+{% extends "di-govuk-one-login-service-header/layouts/service-header.html" %}
+{% set navigationItems = [
+  {
+    href: "/home.html",
+    text: 'Home',
+    id: 'home'
+  },{
+    href: "/your-details/personal-information.html",
+    text: 'Your details',
+    id: 'your-details'
+  },{
+    href: "/applications/index",
+    text: 'Applications',
+    id: 'applications'
+  },{
+    href: "/messages/index",
+    text: 'Messages',
+    id: 'messages'
+  },{
+    href: "/projects",
+    text: 'Projects',
+    id: 'projects'
+  }]
+%} 
+{% set activeLinkId = "applications" %}
+{% set signOutLink = "/index" %}
+
+{% block pageTitle %}
+  {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-third">
+    {{ xGovukSubNavigation({
+      visuallyHiddenTitle: "Navigation",
+      items: [{
+        text: "Your Applications",
+        href: "/applications/index"
+      }, {
+        text: "Outcomes by subject",
+        href: "/applications/outcomes"
+      }, {
+        text: "Approved areas",
+        href: "/applications/approved-areas"
+      }, {
+        text: "Start another application",
+        href: "/applications/new",
+        current: true
+      }]
+    }) }}
+  </div>
+<div class="govuk-grid-column-two-thirds">
+<h1 class="govuk-heading-l">Confirm or update your work history</h1>
+
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{{ govukSummaryList({
+  card: {
+    title: {
+      text: "Director"
+    }
+  },
+  rows: [
+    {
+      key: {
+        text: "Name of employer"
+      },
+      value: {
+        text: "ProPlace consulting Ltd."
+      }
+    },
+    {
+      key: {
+        text: "Job title"
+      },
+      value: {
+        text: "Director"
+      }
+    },
+    {
+      key: {
+        text: "Start date"
+      },
+      value: {
+        text: "June 2005"
+      }
+    },
+    {
+      key: {
+        text: "Are you still working in this role?"
+      },
+      value: {
+        text: "No"
+      }
+    },
+    {
+      key: {
+        text: "End date"
+      },
+      value: {
+        text: "March 2023"
+      }
+    }
+  ]
+}) }}
+
+
+{{ govukSummaryList({
+  card: {
+    title: {
+      text: "Director"
+    }
+  },
+  rows: [
+    {
+      key: {
+        text: "Name of employer"
+      },
+      value: {
+        text: "Wentworth Consultants"
+      }
+    },
+    {
+      key: {
+        text: "Job title"
+      },
+      value: {
+        text: "Finance Director"
+      }
+    },
+    {
+      key: {
+        text: "Start date"
+      },
+      value: {
+        text: "May 1996"
+      }
+    },
+    {
+      key: {
+        text: "Are you still working in this role?"
+      },
+      value: {
+        text: "No"
+      }
+    },
+    {
+      key: {
+        text: "End date"
+      },
+      value: {
+        text: "June 2005"
+      }
+    }
+  ]
+}) }}
+
+
+
+
+<form class="form" action="/new/application-2" method="post">
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{{ govukRadios({
+  name: "confirmWorkHistory",
+  fieldset: {
+    legend: {
+      text: "Are these details correct?",
+      isPageHeading: false,
+      classes: "govuk-fieldset__legend--l"
+    }
+  },
+  items: [
+    {
+      value: "yes",
+      text: "Yes, these details are correct"
+    },
+    {
+      value: "no",
+      text: "No, update or add another role"
+    }
+  ]
+}) }}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{{ govukButton({
+  text: "Save and continue"
+}) }}
+
+</form>
+
+</div>
+</div>
+{% endblock %}

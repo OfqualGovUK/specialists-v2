@@ -1,0 +1,198 @@
+{% extends "di-govuk-one-login-service-header/layouts/service-header.html" %}
+{% set navigationItems = [
+  {
+    href: "/home.html",
+    text: 'Home',
+    id: 'home'
+  },{
+    href: "/your-details/personal-information.html",
+    text: 'Your details',
+    id: 'your-details'
+  },{
+    href: "/applications/index",
+    text: 'Applications',
+    id: 'applications'
+  },{
+    href: "/messages/index",
+    text: 'Messages',
+    id: 'messages'
+  },{
+    href: "/projects",
+    text: 'Projects',
+    id: 'projects'
+  }]
+%} 
+{% set activeLinkId = "applications" %}
+{% set signOutLink = "/index" %}
+
+{% block pageTitle %}
+  {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-third">
+    {{ xGovukSubNavigation({
+      visuallyHiddenTitle: "Navigation",
+      items: [{
+        text: "Your Applications",
+        href: "/applications/index"
+      }, {
+        text: "Outcomes by subject",
+        href: "/applications/outcomes",
+        current: true
+      }, {
+        text: "Approved areas",
+        href: "/applications/approved-areas"
+      }, {
+        text: "Start another application",
+        href: "/applications/new"
+      }]
+    }) }}
+  </div>
+<div class="govuk-grid-column-two-thirds">
+<h1 class="govuk-heading-l">Outcomes by subject</h1>
+<p class="govuk-body">Outcomes for the subjects, occupational areas and qualification levels you have applied for.</p>
+<p class="govuk-body">You can also see more detailed outcomes by the activities you applied for.</p>
+<section class="govuk-!-margin-bottom-8">
+  <div class="govuk-summary-card">
+    <div class="govuk-summary-card__title-wrapper">
+      <h2 class="govuk-summary-card__title">Outcome details</h2>
+    </div>
+    <div class="govuk-summary-card__content">
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Account status
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <strong class="govuk-tag govuk-tag--green">
+              Approved
+            </strong>
+            <p class="govuk-body-s govuk-!-margin-top-1 govuk-!-margin-bottom-1">You will be able to work with Ofqual on projects related to your approved subjects when they become available</p>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Last updated
+          </dt>
+          <dd class="govuk-summary-list__value">
+            08 November 2023
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Renewal date
+          </dt>
+          <dd class="govuk-summary-list__value">
+            11 November 2026
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Detailed outcomes
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <a href="/applications/detailed-outcomes">View your detailed application outcomes</a>
+          </dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</section>
+<!--Start of outcome overview summary cards-->
+
+<div class="govuk-summary-card">
+  <div class="govuk-summary-card__title-wrapper govuk-!-display-block govuk-!-margin-bottom-2">
+    <h2 class="govuk-summary-card__title govuk-!-font-size-24">Business Administrator</h2>
+    <p class="govuk-summary-card__title govuk-!-font-weight-regular">End-point assessment</p>
+  </div>
+  <div class="govuk-summary-card__content">
+    <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-font-weight-regular">
+          Level 3
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ govukTag({
+            text: "Approved 7/7",
+            classes: "govuk-tag--green float-right"
+          })}}
+        </dd>
+      </div>
+    </dl>
+  </div>
+</div>
+
+<div class="govuk-summary-card">
+  <div class="govuk-summary-card__title-wrapper govuk-!-display-block govuk-!-margin-bottom-2">
+    <h2 class="govuk-summary-card__title govuk-!-font-size-24">Management and Leadership</h2>
+    <p class="govuk-summary-card__title govuk-!-font-weight-regular">Vocationally-related Qualification</p>
+  </div>
+  <div class="govuk-summary-card__content">
+    <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-font-weight-regular">
+          Level 5
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ govukTag({
+            text: "Approved 7/7",
+            classes: "govuk-tag--green float-right"
+          })}}
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-font-weight-regular">
+          Level 6
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ govukTag({
+            text: "Approved 6/7",
+            classes: "govuk-tag--green float-right"
+          })}}
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-font-weight-regular">
+          Level 7
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ govukTag({
+            text: "Unsuccessful",
+            classes: "govuk-tag--red float-right"
+          })}}
+        </dd>
+      </div>
+    </dl>
+  </div>
+</div>
+
+<div class="govuk-summary-card">
+  <div class="govuk-summary-card__title-wrapper govuk-!-display-block govuk-!-margin-bottom-2">
+    <h2 class="govuk-summary-card__title govuk-!-font-size-24">Management and Leadership</h2>
+    <p class="govuk-summary-card__title govuk-!-font-weight-regular">T-Level</p>
+  </div>
+  <div class="govuk-summary-card__content">
+    <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-font-weight-regular">
+          Level 3
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ govukTag({
+            text: "Unsuccessful",
+            classes: "govuk-tag--red float-right"
+          })}}
+        </dd>
+      </div>
+    </dl>
+  </div>
+</div>
+
+<!--End of outcome overview summary cards-->
+</div>
+
+</div>
+{% endblock %}

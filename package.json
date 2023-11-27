@@ -7,9 +7,13 @@
   "dependencies": {
     "@govuk-prototype-kit/common-templates": "1.2.2",
     "@govuk-prototype-kit/task-list": "1.1.2",
+    "@x-govuk/govuk-prototype-components": "2.1.0",
+    "@x-govuk/govuk-prototype-filters": "1.2.1",
     "govuk-frontend": "4.7.0",
     "govuk-one-login-service-header": "github:alphagov/di-govuk-one-login-service-header",
-    "govuk-prototype-kit": "13.13.5",
-    "jquery": "3.7.1"
+    "govuk-prototype-kit": "13.15.3",
+    "hmrc-frontend": "5.58.0",
+    "jquery": "3.7.1",
+    "task-list-component": "0.0.4"
   }
 }

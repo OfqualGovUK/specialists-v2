@@ -1,0 +1,132 @@
+{% extends "di-govuk-one-login-service-header/layouts/service-header.html" %}
+{% set navigationItems = [
+  {
+    href: "/home.html",
+    text: 'Home',
+    id: 'home'
+  },{
+    href: "/your-details/personal-information.html",
+    text: 'Your details',
+    id: 'your-details'
+  },{
+    href: "/applications/index",
+    text: 'Applications',
+    id: 'applications'
+  },{
+    href: "/messages/index",
+    text: 'Messages',
+    id: 'messages'
+  },{
+    href: "/projects",
+    text: 'Projects',
+    id: 'projects'
+  }]
+%} 
+{% set activeLinkId = "home" %}
+{% set signOutLink = "/index" %}
+
+
+{% block pageTitle %}
+  {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full-width">
+    <span class="govuk-caption-l">Ofqual subject matter specialists account</span>
+    <h1 class="govuk-heading-l">Perry Smith</h1>
+
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">Your account</h2>
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Account status
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <strong class="govuk-tag govuk-tag--green">
+                Approved
+              </strong>
+              <p class="govuk-body-s govuk-!-margin-top-1 govuk-!-margin-bottom-1">You will be able to work with Ofqual on projects related to your approved subjects when they become available</p>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Outcomes by subject or occupational areas
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <a href="/applications/outcomes">Application outcomes</a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Date of approval
+            </dt>
+            <dd class="govuk-summary-list__value">
+              08 November 2023
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Renewal date
+            </dt>
+            <dd class="govuk-summary-list__value">
+              11 November 2026
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+    {# The cards section can span across the full width since it is then further breaking down into one half #}
+    <ul class="govuk-grid-row eyfs-card-group">
+      <li class="govuk-grid-column-one-third eyfs-card-group__item">
+        <a class="eyfs-link govuk-link govuk-!-font-size-19 govuk-!-font-weight-bold govuk-link--no-visited-state" href="/your-details/personal-information">
+          <div class="eyfs-card--clickable">
+            <div class="eyfs-card__content">
+              <h3 class="govuk-heading-m govuk-!-margin-top-0 govuk-!-margin-bottom-0">Update your details</h3>
+              <p class="govuk-body-s govuk-!-margin-top-2 govuk-!-margin-bottom-0">Request changes to your details, including managing any conflicts of interest.</p>
+            </div>
+          </div>
+        </a>
+      </li>
+      <li class="govuk-grid-column-one-third eyfs-card-group__item">
+        <a class="eyfs-link govuk-link govuk-!-font-size-19 govuk-!-font-weight-bold govuk-link--no-visited-state" href="/applications/index">
+          <div class="eyfs-card--clickable">
+            <div class="eyfs-card__content">
+              <h3 class="govuk-heading-m govuk-!-margin-top-0 govuk-!-margin-bottom-0">View your applications</h3>
+                <p class="govuk-body-s govuk-!-margin-top-2 govuk-!-margin-bottom-0">See the outcomes for each subject or occupational area you have applied for.</p>
+            </div>
+          </div>
+        </a>
+      </li>
+    <!--  <li class="govuk-grid-column-one-third eyfs-card-group__item">
+        <a class="eyfs-link govuk-link govuk-!-font-size-19 govuk-!-font-weight-bold govuk-link--no-visited-state" href="/messages/index">
+          <div class="eyfs-card--clickable">
+            <div class="eyfs-card__content">
+              <h3 class="govuk-heading-m govuk-!-margin-top-0 govuk-!-margin-bottom-0">Read or reply to messages </h3>
+              <p class="govuk-body-s govuk-!-margin-top-2 govuk-!-margin-bottom-0">View any messages Ofqual have sent you, view your replies or send a reply. </p>
+            </div>
+          </div>
+        </a>
+      </li> -->
+      <li class="govuk-grid-column-one-third eyfs-card-group__item">
+        <a class="eyfs-link govuk-link govuk-!-font-size-19 govuk-!-font-weight-bold govuk-link--no-visited-state" href="/applications/new">
+          <div class="eyfs-card--clickable">
+            <div class="eyfs-card__content">
+              <h3 class="govuk-heading-m govuk-!-margin-top-0 govuk-!-margin-bottom-0">Apply for more areas</h3>
+              <p class="govuk-body-s govuk-!-margin-top-2 govuk-!-margin-bottom-0">Apply for more subject or occupational areas, qualification types or qualification levels</p>
+            </div>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </div>
+<!--End of cards section-->
+  </div>
+</div>
+
+{% endblock %}

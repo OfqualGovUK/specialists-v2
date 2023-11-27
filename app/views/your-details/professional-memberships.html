@@ -1,0 +1,108 @@
+{% extends "di-govuk-one-login-service-header/layouts/service-header.html" %}
+{% set navigationItems = [
+  {
+    href: "/home.html",
+    text: 'Home',
+    id: 'home'
+  },{
+    href: "/your-details/personal-information.html",
+    text: 'Your details',
+    id: 'your-details'
+  },{
+    href: "/applications/index",
+    text: 'Applications',
+    id: 'applications'
+  },{
+    href: "/messages/index",
+    text: 'Messages',
+    id: 'messages'
+  },{
+    href: "/projects",
+    text: 'Projects',
+    id: 'projects'
+  }]
+%} 
+{% set activeLinkId = "your-details" %} 
+{% set signOutLink = "/index" %}
+
+{% block pageTitle %}
+  {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-third">
+    {{ xGovukSubNavigation({
+      visuallyHiddenTitle: "Navigation",
+      items: [{
+        text: "Personal information",
+        href: "/your-details/personal-information"
+      }, {
+        text: "Education details",
+        href: "/your-details/education-details"
+      }, {
+        text: "Work history",
+        href: "/your-details/work-history"
+      }, {
+        text: "Professional memberships",
+        href: "/your-details/professional-memberships",
+        current: true
+      }, {
+        text: "References",
+        href: "/your-details/references"
+      }, {
+        text: "Conflicts of Interest",
+        href: "/your-details/conflicts-of-interest"
+      }, {
+        text: "Self declaration",
+        href: "/your-details/self-declaration"
+      }]
+    }) }}
+  </div>
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">Professional memberships</h1>
+    {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{{ govukSummaryList({
+  card: {
+    title: {
+      text: "Chartered Institute of Leadership"
+    }
+  },
+  rows: [
+    {
+      key: {
+        text: "Organisation name"
+      },
+      value: {
+        text: "Chartered Institute of Leadership"
+      }
+    },
+    {
+      key: {
+        text: "Membership type"
+      },
+      value: {
+        text: "Committee member"
+      }
+    },
+    {
+      key: {
+        text: "Year joined"
+      },
+      value: {
+        text: "2000"
+      }
+    }
+  ]
+}) }}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{{ govukButton({
+  text: "Add another professional membership"
+}) }}
+  </div>
+</div>
+
+{% endblock %}

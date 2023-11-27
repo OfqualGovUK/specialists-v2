@@ -1,0 +1,89 @@
+{% extends "di-govuk-one-login-service-header/layouts/service-header.html" %}
+{% set navigationItems = [
+  {
+    href: "/home.html",
+    text: 'Home',
+    id: 'home'
+  },{
+    href: "/your-details/personal-information.html",
+    text: 'Your details',
+    id: 'your-details'
+  },{
+    href: "/applications/index",
+    text: 'Applications',
+    id: 'applications'
+  },{
+    href: "/messages/index",
+    text: 'Messages',
+    id: 'messages'
+  },{
+    href: "/projects",
+    text: 'Projects',
+    id: 'projects'
+  }]
+%} 
+{% set activeLinkId = "applications" %}
+{% set signOutLink = "/index" %}
+
+{% block pageTitle %}
+  {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-third">
+    {{ xGovukSubNavigation({
+      visuallyHiddenTitle: "Navigation",
+      items: [{
+        text: "Your Applications",
+        href: "/applications/index"
+      }, {
+        text: "Outcomes by subject",
+        href: "/applications/outcomes"
+      }, {
+        text: "Approved areas",
+        href: "/applications/approved-areas"
+      }, {
+        text: "Start another application",
+        href: "/applications/new",
+        current: true
+      }]
+    }) }}
+  </div>
+<div class="govuk-grid-column-two-thirds">
+<h1 class="govuk-heading-l">Start another application</h1>
+<p class="govuk-body">Apply to work with Ofqual on more subjects, qualification types, qualification levels or activities.</p>
+<p class="govuk-body">You can apply for new areas and reapply for areas you have previously been unsuccessful in.</p>
+<p class="govuk-body">An additional application involves:</p>
+<ul class="govuk-list govuk-list--bullet">
+  <li>Confirm, add to, or change your employment history and education details.</li>
+  <li>Choose the subjects, qualification types, qualification levels and activities you would like to apply for.</li>
+  <li>Submit evidence of your experience in the areas you have chosen to apply for.</li>
+</ul>
+
+<p class="govuk-body">You will need:</p>
+<ul class="govuk-list govuk-list--bullet">
+  <li>Details of any changes or additions to your employment history.</li>
+  <li>Details and certificates for any additional qualifications or other education included in your application.</li>
+  <li>Any further supporting evidence to clearly demonstrate your expertise in the areas you are applying for.</li>
+</ul>
+
+<p class="govuk-body">You can save your progress and come back to your additional application at any time.</p>
+
+{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+
+{{ govukInsetText({
+  text: "If you want to apply for something you have previously been unsuccessful in, your application will need to clearly show what experience you have gained since your last application."
+}) }}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{{ govukButton({
+  text: "Start a new application",
+  href: "/new/application-2"
+}) }}
+</div>
+
+</div>
+{% endblock %}

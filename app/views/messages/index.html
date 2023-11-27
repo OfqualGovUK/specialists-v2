@@ -1,0 +1,494 @@
+{% extends "di-govuk-one-login-service-header/layouts/service-header.html" %}
+{% set navigationItems = [
+  {
+    href: "/home.html",
+    text: 'Home',
+    id: 'home'
+  },{
+    href: "/your-details/personal-information.html",
+    text: 'Your details',
+    id: 'your-details'
+  },{
+    href: "/applications/index",
+    text: 'Applications',
+    id: 'applications'
+  },{
+    href: "/messages/index",
+    text: 'Messages',
+    id: 'messages'
+  },{
+    href: "/projects",
+    text: 'Projects',
+    id: 'projects'
+  }]
+%} 
+{% set activeLinkId = "messages" %}
+{% set signOutLink = "/index" %}
+
+{% block pageTitle %}
+  {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-column-full-width">
+  <div class="govuk-grid-column-two-thirds">
+  <h1 class="govuk-heading-l">Messages</h1>
+  </div>
+  <div class="govuk-button-group govuk-grid-column-one-third govuk-!-display-block">
+    {{ govukButton({
+      text: "Send a message",
+      href: "#",
+      classes: "govuk-!-margin-right-0 govuk-button--secondary messages--send-button"
+    }) }}
+  </div>
+  
+  <!-- Messages table taken directly from old prototype for temporary placeholder. Data won't exist. Will need recreating!-->
+  <table id="messages-table" class="table--borderless partial-highlight govuk-table">
+    <thead class="govuk-table__head">
+      <tr class="govuk-table__row">
+        <th scope="col" class="govuk-table__header"><span class="govuk-visually-hidden govuk-body">Message status</span></th>
+        <th scope="col" class="govuk-table__header">Subject</th>
+        <th scope="col" class="messages--govuk-table__cell_last" width="160">Date</th>
+      </tr>
+    </thead>
+    <tbody class="govuk-table__body">
+      {% if data.messageSent == "sent" %}
+      <tr class="govuk-table__row clickable-row message read">
+        <!-- status -->
+        <td class="govuk-table__cell messages--govuk-table__cell messages--marker-column">
+          <div>&nbsp;</div>
+        </td>
+        <!-- sender -->
+        <td class="govuk-table__cell messages--govuk-table__cell">
+          <div class="message read message-subject govuk-body govuk-!-margin-bottom-1">
+            <h2 class="govuk-heading-s govuk-!-font-weight-regular govuk-!-margin-bottom-1">
+              <a href="/account/messages/message-sent?referrer=" class="no--underline message-subject govuk-link" data-sso="false" lang="en">
+                {{ data.accountMessageSubject }}
+              </a>
+            </h2>
+          </div>
+        </td>
+        <!-- date -->
+        <td valign="top" class="messages--govuk-table__cell_last bold">
+          <p>12 March 2023</p>
+          <div>&nbsp;</div>
+        </td>
+      </tr>
+      {% else %}
+      {% endif %}
+      
+      {% if data.applicationStatus == "Accepted" %}
+      {% if data.accountMessageWorkingWithOfqual == "Read" %}
+        <tr class="govuk-table__row clickable-row message read">
+          <!-- status -->
+          <td valign="top" class="govuk-table__cell messages--govuk-table__cell messages--marker-column">
+            <div>&nbsp;</div>
+          </td>
+          <!-- sender -->
+          <td class="govuk-table__cell messages--govuk-table__cell">
+            <div class="message read message-subject govuk-body govuk-!-margin-bottom-1">
+              <h2 class="govuk-heading-s govuk-!-font-weight-regular govuk-!-margin-bottom-1">
+                <a href="/message-working-with-ofqual" class="no--underline message-subject govuk-link" data-sso="false" lang="en">
+                  Information for working with Ofqual
+                </a>
+              </h2>
+            </div>
+        </td>
+        <!-- date -->
+        <td valign="top" class="messages--govuk-table__cell_last bold">
+          <p>12 March 2023</p>
+          <div>&nbsp;</div>
+        </td>
+      </tr>
+      {% else %}
+        <tr class="govuk-table__row clickable-row message read">
+          <!-- status -->
+          <td class="govuk-table__cell messages--govuk-table__cell messages--marker-column">
+            <span class="messages--marker-column__marker messages--message-status-marker">Unread</span>
+            <div>&nbsp;</div>
+          </td>
+          <!-- sender -->
+          <td class="govuk-table__cell messages--govuk-table__cell">
+            <div class="message unread message-subject govuk-body govuk-!-margin-bottom-1">
+              <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
+                <a href="/message-working-with-ofqual" class="govuk-!-font-weight-bold no--underline message-subject govuk-link" data-sso="false" lang="en">
+                  Information for working with Ofqual
+                </a>
+              </h2>
+            </div>
+          </td>
+          <!-- date -->
+          <td valign="top" class="messages--govuk-table__cell_last bold">
+            <<p>12 March 2023</p>
+            <div>&nbsp;</div>
+          </td>
+        </tr>
+      {% endif %} 
+    {% endif %} 
+    {% if data.messageSent == "sent" %}
+    <tr class="govuk-table__row clickable-row message read">
+      <!-- status -->
+      <td class="govuk-table__cell messages--govuk-table__cell messages--marker-column">
+        <div>&nbsp;</div>
+      </td>
+      <!-- sender -->
+      <td class="govuk-table__cell messages--govuk-table__cell">
+        <div class="message read message-subject govuk-body govuk-!-margin-bottom-1">
+          <h2 class="govuk-heading-s govuk-!-font-weight-regular govuk-!-margin-bottom-1">
+            <a href="/account/messages/message-sent?referrer=" class="no--underline message-subject govuk-link" data-sso="false" lang="en">
+              {{ data.accountMessageSubject }}
+            </a>
+          </h2>
+        </div>
+      </td>
+      <!-- date -->
+      <td valign="top" class="messages--govuk-table__cell_last bold">
+        <p>12 March 2023</p>
+        <div>&nbsp;</div>
+      </td>
+    </tr>
+    {% else %}
+    {% endif %}
+    
+      {% if data.applicationStatus == "Accepted" %}
+        {% if data.accountMessageSupplierform == "Read" %}
+          <tr class="govuk-table__row clickable-row message read">
+            <!-- status -->
+            <td valign="top" class="govuk-table__cell messages--govuk-table__cell messages--marker-column">
+              <div>&nbsp;</div>
+            </td>
+            <!-- sender -->
+            <td class="govuk-table__cell messages--govuk-table__cell">
+              <div class="message read message-subject govuk-body govuk-!-margin-bottom-1">
+                <h2 class="govuk-heading-s govuk-!-font-weight-regular govuk-!-margin-bottom-1">
+                  <a href="/message-supplier-form" class="no--underline message-subject govuk-link" data-sso="false" lang="en">
+                    Complete your supplier maintenance form
+                  </a>
+                </h2>
+              </div>
+          </td>
+          <!-- date -->
+          <td valign="top" class="messages--govuk-table__cell_last bold">
+            <p>12 March 2023</p>
+            <div>&nbsp;</div>
+          </td>
+        </tr>
+        {% else %}
+          <tr class="govuk-table__row clickable-row message read">
+            <!-- status -->
+            <td class="govuk-table__cell messages--govuk-table__cell messages--marker-column">
+              <span class="messages--marker-column__marker messages--message-status-marker">Unread</span>
+              <div>&nbsp;</div>
+            </td>
+            <!-- sender -->
+            <td class="govuk-table__cell messages--govuk-table__cell">
+              <div class="message unread message-subject govuk-body govuk-!-margin-bottom-1">
+                <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
+                  <a href="/message-supplier-form" class="govuk-!-font-weight-bold no--underline message-subject govuk-link" data-sso="false" lang="en">
+                    Complete your supplier maintenance form
+                  </a>
+                </h2>
+              </div>
+            </td>
+            <!-- date -->
+            <td valign="top" class="messages--govuk-table__cell_last bold">
+              <p>12 March 2023</p>
+              <div>&nbsp;</div>
+            </td>
+          </tr>
+        {% endif %} 
+      {% endif %} 
+      {% if data.messageSent == "sent" %}
+      <tr class="govuk-table__row clickable-row message read">
+        <!-- status -->
+        <td class="govuk-table__cell messages--govuk-table__cell messages--marker-column">
+          <div>&nbsp;</div>
+        </td>
+        <!-- sender -->
+        <td class="govuk-table__cell messages--govuk-table__cell">
+          <div class="message read message-subject govuk-body govuk-!-margin-bottom-1">
+            <h2 class="govuk-heading-s govuk-!-font-weight-regular govuk-!-margin-bottom-1">
+              <a href="/account/messages/message-sent?referrer=" class="no--underline message-subject govuk-link" data-sso="false" lang="en">
+                {{ data.accountMessageSubject }}
+              </a>
+            </h2>
+          </div>
+        </td>
+        <!-- date -->
+        <td valign="top" class="messages--govuk-table__cell_last bold">
+          <p>12 March 2023</p>
+          <div>&nbsp;</div>
+        </td>
+      </tr>
+      {% else %}
+      {% endif %}
+      
+      {% if data.applicationStatus == "Accepted" or data.applicationStatus == "Rejected" %}
+        {% if data.accountMessageOutcome == "Read" %}
+          <tr class="govuk-table__row clickable-row message read">
+            <!-- status -->
+            <td valign="top" class="govuk-table__cell messages--govuk-table__cell messages--marker-column">
+              <div>&nbsp;</div>
+            </td>
+            <!-- sender -->
+            <td class="govuk-table__cell messages--govuk-table__cell">
+              <div class="message read message-subject govuk-body govuk-!-margin-bottom-1">
+                <h2 class="govuk-heading-s govuk-!-font-weight-regular govuk-!-margin-bottom-1">
+                  <a href="/message-outcome" class="no--underline message-subject govuk-link" data-sso="false" lang="en">
+                    Application outcome
+                  </a>
+                </h2>
+              </div>
+          </td>
+          <!-- date -->
+          <td valign="top" class="messages--govuk-table__cell_last bold">
+            <p>12 March 2023</p>
+            <div>&nbsp;</div>
+          </td>
+        </tr>
+        {% else %}
+          <tr class="govuk-table__row clickable-row message read">
+            <!-- status -->
+            <td class="govuk-table__cell messages--govuk-table__cell messages--marker-column">
+              <span class="messages--marker-column__marker messages--message-status-marker">Unread</span>
+              <div>&nbsp;</div>
+            </td>
+            <!-- sender -->
+            <td class="govuk-table__cell messages--govuk-table__cell">
+              <div class="message unread message-subject govuk-body govuk-!-margin-bottom-1">
+                <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
+                  <a href="/message-outcome" class="govuk-!-font-weight-bold no--underline message-subject govuk-link" data-sso="false" lang="en">
+                    Application outcome
+                  </a>
+                </h2>
+              </div>
+            </td>
+            <!-- date -->
+            <td valign="top" class="messages--govuk-table__cell_last bold">
+              <p>12 March 2023</p>
+              <div>&nbsp;</div>
+            </td>
+          </tr>
+        {% endif %} 
+      {% endif %} 
+      
+      {% if data.applicationStatus != "Awaiting decision" %} 
+        {% if data.accountMessageMakingJudgements == "Read" %}
+          <tr class="govuk-table__row clickable-row message read">
+            <!-- status -->
+            <td valign="top" class="govuk-table__cell messages--govuk-table__cell messages--marker-column">
+              <div>&nbsp;</div>
+            </td>
+            <!-- sender -->
+            <td class="govuk-table__cell messages--govuk-table__cell">
+              {% if data.makingAssessmentsEvidenceSent == "sent" %}
+                <div class="message read message-subject govuk-body govuk-!-margin-bottom-1">
+                  <p class="govuk-body-s govuk-!-margin-bottom-1">You sent evidence</p>
+                </div>
+                {% else %}
+              {% endif %}
+              <div class="message read message-subject govuk-body govuk-!-margin-bottom-1">
+                <h2 class="govuk-heading-s govuk-!-font-weight-regular govuk-!-margin-bottom-1">
+                  <a href="/message-further-evidence" class="no--underline message-subject govuk-link" data-sso="false" lang="en">
+                    Further evidence needed for your experience in making assessment judgements
+                  </a>
+                </h2>
+              </div>
+            </td>
+            <!-- date -->
+            <td valign="top" class="messages--govuk-table__cell_last bold">
+              <p>12 March 2023</p>
+              <div>&nbsp;</div>
+            </td>
+          </tr>
+          {% else %}
+            <tr class="govuk-table__row clickable-row message read">
+              <!-- status -->
+              <td class="govuk-table__cell messages--govuk-table__cell messages--marker-column">
+                <span class="messages--marker-column__marker messages--message-status-marker">Unread</span>
+                <div>&nbsp;</div>
+              </td>
+              <!-- sender -->
+              <td class="govuk-table__cell messages--govuk-table__cell">
+                <div class="message unread message-subject govuk-body govuk-!-margin-bottom-1">
+                  <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
+                    <a href="/message-further-evidence" class="govuk-!-font-weight-bold no--underline message-subject govuk-link" data-sso="false" lang="en">
+                      Further evidence needed for your experience in making assessment judgements
+                    </a>
+                  </h2>
+                </div>
+              </td>
+            <!-- date -->
+            <td valign="top" class="messages--govuk-table__cell_last bold">
+              <p>12 March 2023</p>
+              <div>&nbsp;</div>
+            </td>
+          </tr>
+        {% endif %}
+
+        {% if data.accountMessageTeacherTraining == "Read" %}
+          <tr class="govuk-table__row clickable-row message read">
+            <!-- status -->
+            <td valign="top" class="govuk-table__cell messages--govuk-table__cell messages--marker-column">
+              <div>&nbsp;</div>
+            </td>
+            <!-- sender -->
+            <td class="govuk-table__cell messages--govuk-table__cell">
+              {% if data.ttrainingEvidenceSent == "sent" %}
+                <div class="message read message-subject govuk-body govuk-!-margin-bottom-1">
+                  <p class="govuk-body-s govuk-!-margin-bottom-1">You sent evidence</p>
+                </div>
+                {% else %}                
+              {% endif %}
+              <div class="message read message-subject govuk-body govuk-!-margin-bottom-1">
+                <h2 class="govuk-heading-s govuk-!-font-weight-regular govuk-!-margin-bottom-1">
+                  <a href="/message-further-evidence-ttraining" class="no--underline message-subject govuk-link" data-sso="false" lang="en">
+                    Further evidence needed for your experience in teacher training
+                  </a>
+                </h2>
+              </div>
+            </td>
+            <!-- date -->
+            <td valign="top" class="messages--govuk-table__cell_last bold">
+              <p>12 March 2023</p>
+              <div>&nbsp;</div>
+            </td>
+          </tr>
+        {% else %}
+            <tr class="govuk-table__row clickable-row message read">
+              <!-- status -->
+              <td class="govuk-table__cell messages--govuk-table__cell messages--marker-column">
+                <span class="messages--marker-column__marker messages--message-status-marker">Unread</span>
+                <div>&nbsp;</div>
+              </td>
+              <!-- sender -->
+              <td class="govuk-table__cell messages--govuk-table__cell">
+                <div class="message unread message-subject govuk-body govuk-!-margin-bottom-1">
+                  <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
+                    <a href="/message-further-evidence-ttraining" class="govuk-!-font-weight-bold no--underline message-subject govuk-link" data-sso="false" lang="en">
+                      Further evidence needed for your experience in teacher training
+                    </a>
+                  </h2>
+                </div>
+              </td>
+            <!-- date -->
+            <td valign="top" class="messages--govuk-table__cell_last bold">
+              <p>12 March 2023</p>
+              <div>&nbsp;</div>
+            </td>
+          </tr>
+        {% endif %}
+        {% else %}
+      {% endif %}
+
+      {% if data.accountMessageIdentity == "Read" %}
+      <tr class="govuk-table__row clickable-row message read">
+        <!-- status -->
+        <td valign="top" class="govuk-table__cell messages--govuk-table__cell messages--marker-column">
+          <div>&nbsp;</div>
+        </td>
+        <!-- sender -->
+        <td class="govuk-table__cell messages--govuk-table__cell">
+          {% if data.identityCheckReply == "replied" %}
+            <div class="message read message-subject govuk-body govuk-!-margin-bottom-1">
+              <p class="govuk-body-s govuk-!-margin-bottom-1">You replied</p>
+            </div>
+            {% else %}                
+          {% endif %}
+          <div class="message read message-subject govuk-body govuk-!-margin-bottom-1">
+            <h2 class="govuk-heading-s govuk-!-font-weight-regular govuk-!-margin-bottom-1">
+              <a href="/message-identity" class="no--underline message-subject govuk-link" data-sso="false" lang="en">
+                Verify your identity 
+              </a>
+            </h2>
+          </div>
+        </td>
+        <!-- date -->
+        <td valign="top" class="messages--govuk-table__cell_last bold">
+          <p>12 March 2023</p>
+          <div>&nbsp;</div>
+        </td>
+      </tr>
+      {% else %}
+        <tr class="govuk-table__row clickable-row message read">
+          <!-- status -->
+          <td class="govuk-table__cell messages--govuk-table__cell messages--marker-column">
+            <span class="messages--marker-column__marker messages--message-status-marker">Unread</span>
+            <div>&nbsp;</div>
+          </td>
+          <!-- sender -->
+          <td class="govuk-table__cell messages--govuk-table__cell">
+            <div class="message unread message-subject govuk-body govuk-!-margin-bottom-1">
+              <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
+                <a href="/message-identity" class="govuk-!-font-weight-bold no--underline message-subject govuk-link" data-sso="false" lang="en">
+                  Verify your identity 
+                </a>
+              </h2>
+            </div>
+          </td>
+           <!-- date -->
+          <td valign="top" class="messages--govuk-table__cell_last bold">
+            <p>12 March 2023</p>
+            <div>&nbsp;</div>
+          </td>
+        </tr>
+      {% endif %}
+
+      <tr class="govuk-table__row clickable-row message read">
+        <!-- status -->
+        <td valign="top" class="govuk-table__cell messages--govuk-table__cell messages--marker-column">
+          <div>&nbsp;</div>
+        </td>
+        <!-- sender -->
+        <td class="govuk-table__cell messages--govuk-table__cell">
+          <div class="message read message-subject govuk-body govuk-!-margin-bottom-1">
+            {% if data.proofNameChangeReply == "replied" %}
+              <p class="govuk-body-s govuk-!-margin-bottom-1">You replied on 12 March 2023</p>
+            {% else %}
+              <p class="govuk-body-s govuk-!-margin-bottom-1 ">You replied on 12 March 2023</p>
+            {% endif %}
+          </div>
+          <div class="message read message-subject govuk-body govuk-!-margin-bottom-1">
+            <h2 class="govuk-heading-s govuk-!-font-weight-regular govuk-!-margin-top-1">
+              <a href="/account/messages/name-change-proof?referrer=" class="no--underline message-subject govuk-link" data-sso="false" lang="en">
+                Proof of name change required
+              </a>
+            </h2>
+          </div>
+        </td>
+        <!-- date -->
+        <td valign="top" class="messages--govuk-table__cell_last ">
+          <p>12 March 2023</p>
+          <div>&nbsp;</div>
+        </td>
+      </tr>
+      <tr class="govuk-table__row clickable-row message read">
+          <!-- status -->
+          <td class="govuk-table__cell messages--govuk-table__cell messages--marker-column">
+            <div>&nbsp;</div>
+          </td>
+          <!-- sender -->
+          <td class="govuk-table__cell messages--govuk-table__cell">
+            <div class="message read message-subject govuk-body govuk-!-margin-bottom-1">
+              <h2 class="govuk-heading-s govuk-!-font-weight-regular govuk-!-margin-bottom-1s">
+                <a href="/account/messages/application-received?referrer=" class="black-text no--underline message-subject govuk-link" data-sso="false" lang="en">
+                  Application received
+                </a>
+              </h2>
+            </div>
+          </td>
+          <!-- date -->
+          <td valign="top" class="messages--govuk-table__cell_last ">
+            <p>12 March 2023</p>
+            <div>&nbsp;</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+
+
+{% endblock %}

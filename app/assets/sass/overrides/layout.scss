@@ -1,0 +1,5 @@
+@include govuk-media-query($from: tablet) {
+.float-right {
+    float: right;
+}
+}

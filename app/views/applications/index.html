@@ -1,0 +1,79 @@
+{% extends "di-govuk-one-login-service-header/layouts/service-header.html" %}
+{% set navigationItems = [
+  {
+    href: "/home.html",
+    text: 'Home',
+    id: 'home'
+  },{
+    href: "/your-details/personal-information.html",
+    text: 'Your details',
+    id: 'your-details'
+  },{
+    href: "/applications/index",
+    text: 'Applications',
+    id: 'applications'
+  },{
+    href: "/messages/index",
+    text: 'Messages',
+    id: 'messages'
+  },{
+    href: "/projects",
+    text: 'Projects',
+    id: 'projects'
+  }]
+%} 
+{% set activeLinkId = "applications" %}
+{% set signOutLink = "/index" %}
+
+{% block pageTitle %}
+  {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-third">
+    {{ xGovukSubNavigation({
+      visuallyHiddenTitle: "Navigation",
+      items: [{
+        text: "Your Applications",
+        href: "/applications/index",
+        current: true
+      }, {
+        text: "Outcomes by subject",
+        href: "/applications/outcomes"
+      }, {
+        text: "Approved areas",
+        href: "/applications/approved-areas"
+      }, {
+        text: "Start another application",
+        href: "/applications/new"
+      }]
+    }) }}
+  </div>
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">Applications</h1>
+    <table class="govuk-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Your applications</th>
+          <th scope="col" class="govuk-table__header">Created date</th>
+          <th scope="col" class="govuk-table__header">Status</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell"><a href="/applications/original-application" class="govuk-link">Application 1</a></td>
+          <td class="govuk-table__cell">01 January 2023</td>
+          <td class="govuk-table__cell">
+            <strong class="govuk-tag govuk-tag--green">
+              Approved
+            </strong>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+  </div>
+</div>
+
+{% endblock %}

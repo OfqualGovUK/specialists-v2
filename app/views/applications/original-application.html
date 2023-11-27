@@ -1,0 +1,450 @@
+{% extends "di-govuk-one-login-service-header/layouts/service-header.html" %}
+{% set navigationItems = [
+  {
+    href: "/home.html",
+    text: 'Home',
+    id: 'home'
+  },{
+    href: "/your-details/personal-information.html",
+    text: 'Your details',
+    id: 'your-details'
+  },{
+    href: "/applications/index",
+    text: 'Applications',
+    id: 'applications'
+  },{
+    href: "/messages/index",
+    text: 'Messages',
+    id: 'messages'
+  },{
+    href: "/projects",
+    text: 'Projects',
+    id: 'projects'
+  }]
+%} 
+{% set activeLinkId = "applications" %}
+{% set signOutLink = "/index" %}
+
+{% block pageTitle %}
+  {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+<!-- Setting HTML to use within summary card values where value has more than 1 line -->
+{% set assessmentExpertiseHtml %}
+<ul class="govuk-list">     
+  <li>
+    Assessment
+  </li>
+  <li>
+    Industry, occupational or professional
+  </li>
+  <li>
+    Teaching, lecturing or training
+  </li>
+</ul>
+{% endset %}
+
+{% set assessmentActivitiesHtml %}
+<ul class="govuk-list">           
+  <li>
+    Designing and developing assessments
+  </li>
+  <li>
+    Making assessment judgements
+  </li>
+  <li>
+    Standard setting and awarding qualifications
+  </li>
+  <li>
+    Evaluating assessments or assessment approaches
+  </li>
+</ul>
+{% endset %}
+{% set teachingActivitiesHtml %}
+<ul class="govuk-list">           
+  <li>
+    Teaching or lecturing
+  </li>
+  <li>
+    Teacher training
+  </li>
+</ul>
+{% endset %}
+<!-- end of setting html for summary cards -->
+
+<div class="govuk-grid-row">
+    <a href="/applications/index" class="govuk-back-link">Back to Applications</a>
+  <div class="govuk-grid-column-one-third">
+    {{ xGovukSubNavigation({
+      visuallyHiddenTitle: "Navigation",
+      items: [{
+        text: "Your Applications",
+        href: "/applications/index",
+        current: true
+      }, {
+        text: "Outcomes by subject",
+        href: "/applications/outcomes"
+      }, {
+        text: "Approved areas",
+        href: "/applications/approved-areas"
+      }, {
+        text: "Start another application",
+        href: "/applications/new"
+      }]
+    }) }}
+  </div>
+<div class="govuk-grid-column-two-thirds">
+<h1 class="govuk-heading-l">Application 1</h1>
+
+<!-- start of subjects applied for summary cards -->
+<h2 class="govuk-heading-m">Subjects or occupational areas</h2>
+
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{{ govukSummaryList({
+  card: {
+    title: {
+      text: "Business Administrator (End-point assessment)"
+    }
+  },
+  rows: [
+    {
+      key: {
+        text: "Subject"
+      },
+      value: {
+        html: "Business Administrator"
+      }
+    },
+    {
+      key: {
+        text: "Qualification type"
+      },
+      value: {
+        html: "End-point assessment"
+      }
+    },
+    {
+      key: {
+        text: "Qualification level"
+      },
+      value: {
+        html: "Level 3"
+      }
+    },
+    {
+      key: {
+        text: "What type(s) of experience do you have for this subject or occupational area?"
+      },
+      value: {
+        html: assessmentExpertiseHtml
+      } 
+    },
+    {
+      key: {
+        text: "Which assessment activities or responsibilities are you experienced in for this subject or occupational area?"
+      },
+      value: {
+        html: assessmentActivitiesHtml
+      } 
+    },
+    {
+      key: {
+        text: "Which teaching, lecturing or training activities or responsibilities are you experienced in for this subject or occupational area?"
+      },
+      value: {
+        html: teachingActivitiesHtml
+      } 
+    }
+  ]
+}) }}
+
+{{ govukSummaryList({
+  card: {
+    title: {
+      text: "Management and Leadership (Vocationally-related Qualification)"
+    }
+  },
+  rows: [
+    {
+      key: {
+        text: "Subject"
+      },
+      value: {
+        html: "Management and Leadership"
+      }
+    },
+    {
+      key: {
+        text: "Qualification type"
+      },
+      value: {
+        html: "Vocationally-related qualification"
+      }
+    },
+    {
+      key: {
+        text: "Qualification level"
+      },
+      value: {
+        html: "Level 5, Level 6, Level 7"
+      }
+    },
+    {
+      key: {
+        text: "What type(s) of experience do you have for this subject or occupational area?"
+      },
+      value: {
+        html: assessmentExpertiseHtml
+      } 
+    },
+    {
+      key: {
+        text: "Which assessment activities or responsibilities are you experienced in for this subject or occupational area?"
+      },
+      value: {
+        html: assessmentActivitiesHtml
+      } 
+    },
+    {
+      key: {
+        text: "Which teaching, lecturing or training activities or responsibilities are you experienced in for this subject or occupational area?"
+      },
+      value: {
+        html: teachingActivitiesHtml
+      } 
+    }
+  ]
+}) }}
+
+{{ govukSummaryList({
+  card: {
+    title: {
+      text: "Management and Leadership (T-level)"
+    }
+  },
+  rows: [
+    {
+      key: {
+        text: "Subject"
+      },
+      value: {
+        html: "Management and Leadership"
+      }
+    },
+    {
+      key: {
+        text: "Qualification type"
+      },
+      value: {
+        html: "T-Level"
+      }
+    },
+    {
+      key: {
+        text: "Qualification level"
+      },
+      value: {
+        html: "Level 3"
+      }
+    },
+    {
+      key: {
+        text: "What type(s) of experience do you have for this subject or occupational area?"
+      },
+      value: {
+        html: assessmentExpertiseHtml
+      } 
+    },
+    {
+      key: {
+        text: "Which assessment activities or responsibilities are you experienced in for this subject or occupational area?"
+      },
+      value: {
+        html: assessmentActivitiesHtml
+      } 
+    },
+    {
+      key: {
+        text: "Which teaching, lecturing or training activities or responsibilities are you experienced in for this subject or occupational area?"
+      },
+      value: {
+        html: teachingActivitiesHtml
+      } 
+    }
+  ]
+}) }}
+
+<!-- end of subjects applied for summary cards -->
+
+<h2 class="govuk-heading-m">Evidence of experience</h2>
+
+<!-- Start of evidence summary cards--->
+
+{{ govukSummaryList({
+  card: {
+    title: {
+      text: "Assessment experience"
+    }
+  },
+  rows: [
+    {
+      key: {
+        text: "Provide details of your experience in designing and developing assessments"
+      },
+      value: {
+        html: "I was involved in drafting the syllabus/specifications, course content, design of the assessments, development of the question banks, delivering the pilot courses. I have acted as an External Verifier and mentored other trainers and assessors."
+      }
+    },
+    {
+      key: {
+        text: "Provide details of your experience in making assessment judgements"
+      },
+      value: {
+        html: "I was involved in the level 3 Busniess Administrator end point assessment's ongoing development. Marking assessments - marking exam papers and assessments submitted by assessment centres and candidates and assessing candidate's performance against marking and assessment criteria. Moderating the marking of others - acting as a moderator and internal verifier for the assessment centres and as an external verifier."
+      }
+    },
+    {
+      key: {
+        text: "Provide details of your experience in standard setting and awarding qualifications"
+      },
+      value: {
+        html: "I have reviewed candidate scripts and decided on grade boundaries for the Level 3 qualifications as well as setting learning outcomes and generally overseeing the qualification standards."
+      }
+    },
+    {
+      key: {
+        text: "Provide details of your experience in evaluating assessments or assessment approaches"
+      },
+      value: {
+        html: "I have had extensive experience in reviewing the question banks, marking schemes and assessment tasks. I have also been involved in research into leadership-related qualifications offered by other bodies to ensure that they continue to be relevant and fit for purpose."
+      } 
+    }
+  ]
+}) }}
+
+{{ govukSummaryList({
+  card: {
+    title: {
+      text: "Industry, occupational or professional experience"
+    }
+  },
+  rows: [
+    {
+      key: {
+        text: "Provide details of your industry, occupational or professional experience"
+      },
+      value: {
+        html: "I have been advising on business and leadership issues for many years. I have run my own consulting business providing advice and training on compliance with regulations to businesses."
+      }
+    }
+  ]
+}) }}
+
+{{ govukSummaryList({
+  card: {
+    title: {
+      text: "Teaching, lecturing or training experience"
+    }
+  },
+  rows: [
+    {
+      key: {
+        text: "Are you currently working in a teaching, lecturing or training role?"
+      },
+      value: {
+        html: "Yes"
+      }
+    },
+    {
+      key: {
+        text: "Provide details of your experience in teaching or lecturing"
+      },
+      value: {
+        html: "I've taught business, management and leadership for 15 years."
+      }
+    },
+    {
+      key: {
+        text: "Provide details of your experience in teacher training"
+      },
+      value: {
+        html: "I have been an approved trainer for Leadership and management Ofqual regulated Level 3 qualifications for many years. I also regularly deliver leadership sessions to start-up companies. I have delivered over 2000 hours of training."
+      }
+    }
+  ]
+}) }}
+
+<!-- End of evidence summary cards--->
+
+<h2 class="govuk-heading-m">Other evidence</h2>
+
+<!--Start of other evidence summary cards-->
+
+{{ govukSummaryList({
+  card: {
+    title: {
+      text: "Communication and analytical judgement skills"
+    }
+  },
+  rows: [
+    {
+      key: {
+        text: "Provide details of your communication and analytical judgement skills"
+      },
+      value: {
+        html: "Business consulting means that I speak to many different types of people day to day. For example, I speak to entrepreneurs about getting angel investors to take their business forward and prepare written business plans for allmy consulting work."
+      }
+    }
+  ]
+}) }}
+
+{{ govukSummaryList({
+  card: {
+    title: {
+      text: "Further supporting evidence"
+    }
+  },
+  rows: [
+    {
+      key: {
+        text: "Provide details of any further supporting evidence"
+      },
+      value: {
+        html: "I sit on the Management Committee of the trade association for the Leadership Consulting sector. It responds to regulatory bodies in respect of proposed changes to management-related guidance."
+      }
+    }
+  ]
+}) }}
+
+{{ govukSummaryList({
+  card: {
+    title: {
+      text: "Identity checks"
+    }
+  },
+  rows: [
+    {
+      key: {
+        text: "Which document(s) can you provide to verify your identity?"
+      },
+      value: {
+        html: "A UK or Irish passport"
+      }
+    },
+    {
+      key: {
+        text: "Upload your passport"
+      },
+      value: {
+        html: "passport.pdf"
+      }
+    }
+  ]
+}) }}
+
+</div>
+
+</div>
+{% endblock %}

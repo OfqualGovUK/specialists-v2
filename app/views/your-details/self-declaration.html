@@ -1,0 +1,106 @@
+{% extends "di-govuk-one-login-service-header/layouts/service-header.html" %}
+{% set navigationItems = [
+  {
+    href: "/home.html",
+    text: 'Home',
+    id: 'home'
+  },{
+    href: "/your-details/personal-information.html",
+    text: 'Your details',
+    id: 'your-details'
+  },{
+    href: "/applications/index",
+    text: 'Applications',
+    id: 'applications'
+  },{
+    href: "/messages/index",
+    text: 'Messages',
+    id: 'messages'
+  },{
+    href: "/projects",
+    text: 'Projects',
+    id: 'projects'
+  }]
+%} 
+{% set activeLinkId = "your-details" %} 
+{% set signOutLink = "/index" %}
+
+{% block pageTitle %}
+  {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-third">
+    {{ xGovukSubNavigation({
+      visuallyHiddenTitle: "Navigation",
+      items: [{
+        text: "Personal information",
+        href: "/your-details/personal-information"
+      }, {
+        text: "Education details",
+        href: "/your-details/education-details"
+      }, {
+        text: "Work history",
+        href: "/your-details/work-history"
+      }, {
+        text: "Professional memberships",
+        href: "/your-details/professional-memberships"
+      }, {
+        text: "References",
+        href: "/your-details/references"
+      }, {
+        text: "Conflicts of Interest",
+        href: "/your-details/conflicts-of-interest"
+      }, {
+        text: "Self declaration",
+        href: "/your-details/self-declaration",
+        current: true
+      }]
+    }) }}
+  </div>
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+    <h1 class="govuk-heading-l">Self declaration</h1>
+    {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{{ govukSummaryList({
+    rows: [
+    {
+      key: {
+        text: "Have you ever been convicted of the listed offences"
+      },
+      value: {
+        text: "No"
+      }
+    },
+    {
+      key: {
+        text: "Have you ever been declared bankrupt?"
+      },
+      value: {
+        text: "No"
+      }
+    },
+    {
+      key: {
+        text: "Have you ever been guilty of grave professional misconduct?"
+      },
+      value: {
+        text: "No"
+      }
+    },
+    {
+      key: {
+        text: "Has your organisation, or you as an individual, ever been in breach of obligations related to tax or social security?"
+      },
+      value: {
+        text: 'No'
+      }
+    }
+  ]
+}) }}
+  </div>
+</div>
+
+{% endblock %}

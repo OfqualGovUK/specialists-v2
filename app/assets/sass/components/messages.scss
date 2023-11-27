@@ -1,0 +1,79 @@
+// styling taken, and edited, from Personal tax account 
+.messages--govuk-table__cell {
+    padding: 10px 20px 10px 0 !important;
+    border-bottom: 1px solid #b1b4b6 !important;
+    text-align: left;
+    vertical-align: center;
+}
+
+.messages--govuk-table__cell_last {
+    padding: 13px 0px 10px 0 !important;
+    border-bottom: 1px solid #b1b4b6 !important;
+    text-align: left;
+}
+
+.messages--govuk-table__cell a {
+    padding-bottom: 0;
+}
+
+.messages--marker-column, .messages--marker-column__marker {
+    vertical-align: top;
+}
+.messages--marker-column {
+    width: 5%;
+}
+
+.messages--marker-column__marker {
+    background-color: govuk-colour("red");
+    display: block;
+    margin: 0 auto;
+    overflow: hidden;
+    text-indent: -99999px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-top: 8px;
+}
+
+.messages--send-button {
+    width: auto !important;
+}
+
+@include govuk-media-query($from: tablet) {
+    .messages--send-button {
+        float: right;
+        width: auto !important;
+    }
+}
+
+.message-subject:visited {
+    font-weight: 400 !important;
+}
+
+.message-inbox__list {
+    display: table;
+    width: 100%;
+    border-top: 1px solid #a1acb2;
+  
+    .message-inbox__list-item {
+      display: table-row;
+      font-weight: bold;
+      a:link{
+        text-decoration: none;
+      }
+      &--read {
+        background-color: #f8f8f8;
+        font-weight: normal;
+      }
+    }
+  
+    .message-inbox__block {
+      display: table-cell;
+      padding: 20px 10px;
+      border-bottom: 1px solid #a1acb2;
+      &:last-child {
+        white-space: nowrap;
+        text-align: right;
+      }
+    }
+  }

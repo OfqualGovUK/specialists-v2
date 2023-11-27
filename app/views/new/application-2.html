@@ -1,0 +1,168 @@
+{% extends "di-govuk-one-login-service-header/layouts/service-header.html" %}
+{% set navigationItems = [
+  {
+    href: "/home.html",
+    text: 'Home',
+    id: 'home'
+  },{
+    href: "/your-details/personal-information.html",
+    text: 'Your details',
+    id: 'your-details'
+  },{
+    href: "/applications/index",
+    text: 'Applications',
+    id: 'applications'
+  },{
+    href: "/messages/index",
+    text: 'Messages',
+    id: 'messages'
+  },{
+    href: "/projects",
+    text: 'Projects',
+    id: 'projects'
+  }]
+%} 
+{% set activeLinkId = "applications" %}
+{% set signOutLink = "/index" %}
+
+{% block pageTitle %}
+  {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-third">
+    {{ xGovukSubNavigation({
+      visuallyHiddenTitle: "Navigation",
+      items: [{
+        text: "Your Applications",
+        href: "/applications/index"
+      }, {
+        text: "Outcomes by subject",
+        href: "/applications/outcomes"
+      }, {
+        text: "Approved areas",
+        href: "/applications/approved-areas"
+      }, {
+        text: "Start another application",
+        href: "/applications/new",
+        current: true
+      }]
+    }) }}
+  </div>
+<div class="govuk-grid-column-two-thirds">
+<h1 class="govuk-heading-l">Start another application</h1>
+
+<!-- start of task list-->
+<h2 class="govuk-heading-m">1. Your details</h2>
+{{ govukTaskList({
+  idPrefix: "confirm-details",
+  items: [
+    {
+      title: {
+        text: "Work history"
+      },
+      hint:{
+        text: "Confirm or update your work history"
+      },
+      href: "/new/confirm-work-history",
+      status: {
+        classes: "govuk-task-list__status--blue",
+         text: "Incomplete"
+      }
+    },
+    {
+    title: {
+        text: "Education details"
+    },
+    hint:{
+        text: "Confirm or update your education details"
+    },
+    href: "#",
+    status: {
+        classes: "govuk-task-list__status--blue",
+        text: "Incomplete"
+    }
+    },
+    {
+    title: {
+        text: "Conflicts of interest"
+    },
+    hint:{
+        text: "Confirm or update conflicts of interests"
+    },
+    href: "#",
+    status: {
+        classes: "govuk-task-list__status--blue",
+        text: "Incomplete"
+    }
+    }
+  ]
+}) }}
+
+<h2 class="govuk-heading-m">2. Select what you want to apply for</h2>
+{{ govukTaskList({
+  idPrefix: "subject-select",
+  items: [
+    {
+      title: {
+        text: "Select the areas you want to apply for"
+      },
+      hint:{
+        text: "You can reapply for unsuccessful areas or apply for new ones"
+    },
+      href: "#",
+      status: {
+        classes: "govuk-task-list__status--blue",
+         text: "Incomplete"
+      }
+    }
+  ]
+}) }}
+
+<h2 class="govuk-heading-m">3. Evidence of your experience</h2>
+{{ govukTaskList({
+  idPrefix: "evidence-of-experience",
+  items: [
+  {
+    title: {
+        text: "Add your evidence of experience"
+    },
+    hint:{
+        text: "You must complete the previous section first"
+    },
+    href: "#",
+    status: {
+        classes: "govuk-task-list__status--grey",
+        text: "Cannot start yet"
+    }
+    }
+  ]
+}) }}
+
+<h2 class="govuk-heading-m">4. Review and submit</h2>
+{{ govukTaskList({
+  idPrefix: "review-submit",
+  items: [
+  {
+    title: {
+        text: "Review and submit your application"
+    },
+    hint:{
+        text: "You must complete all sections first"
+    },
+    href: "#",
+    status: {
+        classes: "govuk-task-list__status--grey",
+        text: "Cannot start yet"
+    }
+    }
+  ]
+}) }}
+
+<!-- End of task list-->
+
+</div>
+</div>
+{% endblock %}
