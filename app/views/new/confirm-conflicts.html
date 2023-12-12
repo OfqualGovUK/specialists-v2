@@ -52,31 +52,39 @@
     }) }}
   </div>
 <div class="govuk-grid-column-two-thirds">
-<h1 class="govuk-heading-l">Confirm or update your work history</h1>
+<h1 class="govuk-heading-l">Confirm or update your conflicts of interest</h1>
 
 {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 
 {{ govukSummaryList({
   card: {
     title: {
-      text: "Director"
+      text: "Advanced Qualifications ltd."
     }
   },
   rows: [
     {
       key: {
-        text: "Name of employer"
+        text: "Name of organisation"
       },
       value: {
-        text: "ProPlace consulting Ltd."
+        text: "Advanced Qualifications ltd."
       }
     },
     {
       key: {
-        text: "Job title"
+        text: "Type of conflict"
       },
       value: {
-        text: "Director"
+        text: "I work for an Awarding Organisation as an external consultant or advisor"
+      }
+    },
+    {
+      key: {
+        text: "Details of conflict"
+      },
+      value: {
+        text: "I work for an awarding organisation, but I am not employed. I am contracted externally. I am training, assessor, and examiner for the qualification they award. I would put the detail of the years I was an assessor for them and if I am no longer doing any work for them I'd make it clear I haven't and don't do any work for them etc."
       }
     },
     {
@@ -89,7 +97,7 @@
     },
     {
       key: {
-        text: "Are you still working in this role?"
+        text: "Is this a current conflict of interest?"
       },
       value: {
         text: "No"
@@ -100,70 +108,15 @@
         text: "End date"
       },
       value: {
-        text: "March 2023"
+        text: "March 2015"
       }
     }
   ]
 }) }}
-
-
-{{ govukSummaryList({
-  card: {
-    title: {
-      text: "Director"
-    }
-  },
-  rows: [
-    {
-      key: {
-        text: "Name of employer"
-      },
-      value: {
-        text: "Wentworth Consultants"
-      }
-    },
-    {
-      key: {
-        text: "Job title"
-      },
-      value: {
-        text: "Finance Director"
-      }
-    },
-    {
-      key: {
-        text: "Start date"
-      },
-      value: {
-        text: "May 1996"
-      }
-    },
-    {
-      key: {
-        text: "Are you still working in this role?"
-      },
-      value: {
-        text: "No"
-      }
-    },
-    {
-      key: {
-        text: "End date"
-      },
-      value: {
-        text: "June 2005"
-      }
-    }
-  ]
-}) }}
-
-
-
-
-<form class="form" action="/new/work-history-complete" method="post">
+<form class="form" action="/new/conflicts-complete" method="post">
 {% from "govuk/components/radios/macro.njk" import govukRadios %}
 {{ govukRadios({
-  name: "WorkHistoryCorrect",
+  name: "ConflictsCorrect",
   fieldset: {
     legend: {
       text: "Are these details correct?",
@@ -178,7 +131,7 @@
     },
     {
       value: "no",
-      text: "No, update or add another role"
+      text: "No, update or add another conflict"
     }
   ]
 }) }}

@@ -52,25 +52,25 @@
     }) }}
   </div>
   <div class="govuk-grid-column-two-thirds">
-    <form class="form" action="/new/is-reapply" method="post">
+    <form class="form" action="/new/application-2" method="post">
       {% from "govuk/components/radios/macro.njk" import govukRadios %}
       {{ govukRadios({
-        name: "isReapply",
+        name: "adviseAreasCompleted",
         fieldset: {
           legend: {
-            text: "Do you want to reapply for something you have been previously unsuccessful in?",
+            text: "Have you completed this section?",
             isPageHeading: true,
             classes: "govuk-fieldset__legend--l"
           }
         },
         items: [
           {
-            value: "yes",
-            text: "Yes, I want to apply for something I have previously been unsuccessful in"
+            value: "complete",
+            text: "Yes, I have completed this section"
           },
           {
-            value: "no",
-            text: "No, I want to apply for a new area"
+            value: "inProgress",
+            text: "No, I'll come back to it later"
           }
         ]
       }) }}

@@ -52,13 +52,13 @@
     }) }}
   </div>
   <div class="govuk-grid-column-two-thirds">
-    <form class="form" action="/new/is-reapply" method="post">
+    <form class="form" action="/new/additional/is-new" method="post">
       {% from "govuk/components/radios/macro.njk" import govukRadios %}
       {{ govukRadios({
-        name: "isReapply",
+        name: "isAddNew",
         fieldset: {
           legend: {
-            text: "Do you want to reapply for something you have been previously unsuccessful in?",
+            text: "Do you want to apply for a new area?",
             isPageHeading: true,
             classes: "govuk-fieldset__legend--l"
           }
@@ -66,11 +66,11 @@
         items: [
           {
             value: "yes",
-            text: "Yes, I want to apply for something I have previously been unsuccessful in"
+            text: "Yes, I want to apply for a new subject, qualification type, qualification level, or activity"
           },
           {
             value: "no",
-            text: "No, I want to apply for a new area"
+            text: "No"
           }
         ]
       }) }}

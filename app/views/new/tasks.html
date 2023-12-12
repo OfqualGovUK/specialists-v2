@@ -1,0 +1,107 @@
+{% extends "di-govuk-one-login-service-header/layouts/service-header.html" %}
+{% set navigationItems = [
+  {
+    href: "/home.html",
+    text: 'Home',
+    id: 'home'
+  },{
+    href: "/your-details/personal-information.html",
+    text: 'Your details',
+    id: 'your-details'
+  },{
+    href: "/applications/index",
+    text: 'Applications',
+    id: 'applications'
+  },{
+    href: "/messages/index",
+    text: 'Messages',
+    id: 'messages'
+  },{
+    href: "/projects",
+    text: 'Projects',
+    id: 'projects'
+  }]
+%} 
+{% set activeLinkId = "applications" %}
+{% set signOutLink = "/index" %}
+
+{% block pageTitle %}
+  {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-third">
+    {{ xGovukSubNavigation({
+      visuallyHiddenTitle: "Navigation",
+      items: [{
+        text: "Your Applications",
+        href: "/applications/index"
+      }, {
+        text: "Outcomes by subject",
+        href: "/applications/outcomes"
+      }, {
+        text: "Approved areas",
+        href: "/applications/approved-areas"
+      }, {
+        text: "Start another application",
+        href: "/applications/new",
+        current: true
+      }]
+    }) }}
+  </div>
+
+<div class="govuk-grid-column-two-thirds">
+<h1 class="govuk-heading-l">Start another application</h1>
+{% from "_components/task-list-2/macro.html"             import appTaskListItem %}
+<!-- start of task list-->
+<section class="govuk-!-margin-bottom-8">
+  <h2 class="govuk-heading-m govuk-!-font-size-27">Personal details</h2>
+  <ul class="app-task-list">
+    {{ appTaskListItem({
+      name: 'Personal information and contact address',
+      href: 'application/personal-details',
+      _href: '#',
+      taskName: data.personalDetailsCompleted
+    })}}
+  </ul>
+</section>
+
+<section class="govuk-!-margin-bottom-8">
+  <h2 class="govuk-heading-m govuk-!-font-size-27">Education details</h2>
+  <ul class="app-task-list">
+    {{ appTaskListItem({
+      name: 'Your qualifications',
+      href: 'application/qualifications',
+      taskName: data.educationCompleted
+    })}}
+  </ul>
+</section>
+
+<section class="govuk-!-margin-bottom-8">
+  <h2 class="govuk-heading-m govuk-!-font-size-27">Work history</h2>
+  <ul class="app-task-list">
+    {{ appTaskListItem({
+      name: 'Work history',
+      href: '/new/confirm-work-history',
+      taskName: data.confirmWorkHistory
+    })}}
+    {{ appTaskListItem({
+      name: 'Professional memberships',
+      href: 'application/professional-memberships',
+      taskName: data.professionalMembershipsCompleted
+    })}}
+    {{ appTaskListItem({
+      name: 'References',
+      href: 'application/references',
+      taskName: data.referencesCompleted
+    })}}
+  </ul>
+</section>
+
+<!-- End of task list-->
+
+</div>
+</div>
+{% endblock %}

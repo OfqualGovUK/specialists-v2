@@ -1,0 +1,200 @@
+{% extends "di-govuk-one-login-service-header/layouts/service-header.html" %}
+{% set navigationItems = [
+  {
+    href: "/home.html",
+    text: 'Home',
+    id: 'home'
+  },{
+    href: "/your-details/personal-information.html",
+    text: 'Your details',
+    id: 'your-details'
+  },{
+    href: "/applications/index",
+    text: 'Applications',
+    id: 'applications'
+  },{
+    href: "/messages/index",
+    text: 'Messages',
+    id: 'messages'
+  },{
+    href: "/projects",
+    text: 'Projects',
+    id: 'projects'
+  }]
+%} 
+{% set activeLinkId = "applications" %}
+{% set signOutLink = "/index" %}
+
+{% set areasOfExperience %}
+  <ul class="govuk-list govuk-!-margin-bottom-0">
+    {# loops through and gets all the checked items  #}
+    {% for type in data.newQualAssessmentactivities %}
+      <li>
+        {{ type }}
+      </li>
+    {% endfor %}
+  </ul>
+  <ul class="govuk-list govuk-!-margin-bottom-0">
+    {# loops through and gets all the checked items  #}
+    {% for type in data.newQualIndustryactivities %}
+      <li>
+        {{ type }}
+      </li>
+    {% endfor %}
+  </ul>
+  <ul class="govuk-list govuk-!-margin-bottom-0">
+    {# loops through and gets all the checked items  #}
+    {% for type in data.newQualTeachingactivities %}
+      <li>
+        {{ type }}
+      </li>
+    {% endfor %}
+  </ul>
+{% endset %}
+
+{% set newQualLevels %}
+  <ul class="govuk-list govuk-!-margin-bottom-0">
+    {# loops through and gets all the checked items  #}
+    {% for type in data.newQualLevels %}
+      <li>
+        {{ type }}
+      </li>
+    {% endfor %}
+  </ul>
+{% endset %}
+
+{% block pageTitle %}
+  {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-third">
+    {{ xGovukSubNavigation({
+      visuallyHiddenTitle: "Navigation",
+      items: [{
+        text: "Your Applications",
+        href: "/applications/index"
+      }, {
+        text: "Outcomes by subject",
+        href: "/applications/outcomes"
+      }, {
+        text: "Approved areas",
+        href: "/applications/approved-areas"
+      }, {
+        text: "Start another application",
+        href: "/applications/new",
+        current: true
+      }]
+    }) }}
+  </div>
+  <div class="govuk-grid-column-two-thirds">
+    <form class="form" action="/new/additional/completed" method="post">
+      <span class="govuk-caption-l">Apply for new areas</span>
+    <h1 class="govuk-heading-l">Review the new areas you want to apply for</h1>
+    {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{{ govukSummaryList({
+  card: {
+    title: {
+      text: data.resultName
+    },
+    actions: {
+      items: [
+        {
+          href: "#",
+          text: "Delete",
+          visuallyHiddenText: data.resultName
+        }
+      ]
+    }
+  },
+  rows: [
+    {
+      key: {
+        text: "Qualification type"
+      },
+      value: {
+        html: data.newQualType
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "qualification type"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Qualification level"
+      },
+      value: {
+        html: newQualLevels
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "qualification level"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Areas of experience"
+      },
+      value: {
+        html: areasOfExperience
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "areas of experience"
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+
+{{ govukRadios({
+  name: "AddAnotherNew",
+  fieldset: {
+    legend: {
+      text: "Would you like to add another subject?",
+      isPageHeading: false,
+      classes: "govuk-fieldset__legend--l"
+    }
+  },
+  items: [
+    {
+      value: "true",
+      text: "Yes, I'd like to add another subject"
+    },
+    {
+      value: "false",
+      text: "No, I've finished adding subjects"
+    }
+  ]
+}) }}
+      
+      {% from "govuk/components/button/macro.njk" import govukButton %}
+      
+      {{ govukButton({
+        text: "Save and continue"
+      }) }}
+      
+      </form>
+
+  </div>
+</div>
+
+{% endblock %}

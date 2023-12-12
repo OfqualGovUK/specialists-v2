@@ -1,0 +1,761 @@
+{% extends "di-govuk-one-login-service-header/layouts/service-header.html" %}
+{% set navigationItems = [
+  {
+    href: "/home.html",
+    text: 'Home',
+    id: 'home'
+  },{
+    href: "/your-details/personal-information.html",
+    text: 'Your details',
+    id: 'your-details'
+  },{
+    href: "/applications/index",
+    text: 'Applications',
+    id: 'applications'
+  },{
+    href: "/messages/index",
+    text: 'Messages',
+    id: 'messages'
+  },{
+    href: "/projects",
+    text: 'Projects',
+    id: 'projects'
+  }]
+%} 
+{% set activeLinkId = "applications" %}
+{% set signOutLink = "/index" %}
+
+{% set subject2AreasHtml %}
+  <ul class="govuk-list">
+      <li>Designing and developing assessments</li>
+      <li>Making assessment judgements</li>
+      <li>Standard setting and awarding qualifications</li>
+      <li>Evaluating assessments or assessment approaches</li>
+      <li>Industry, occupational or professional</li>
+      <li>Teaching or lecturing</li>
+      <li>Teacher training</li>
+  </ul>
+{% endset %}
+{% set areasOfExperience %}
+  <ul class="govuk-list govuk-!-margin-bottom-0">
+    {# loops through and gets all the checked items  #}
+    {% for type in data.newQualAssessmentactivities %}
+      <li>
+        {{ type }}
+      </li>
+    {% endfor %}
+  </ul>
+  <ul class="govuk-list govuk-!-margin-bottom-0">
+    {# loops through and gets all the checked items  #}
+    {% for type in data.newQualIndustryactivities %}
+      <li>
+        {{ type }}
+      </li>
+    {% endfor %}
+  </ul>
+  <ul class="govuk-list govuk-!-margin-bottom-0">
+    {# loops through and gets all the checked items  #}
+    {% for type in data.newQualTeachingactivities %}
+      <li>
+        {{ type }}
+      </li>
+    {% endfor %}
+  </ul>
+{% endset %}
+
+{% set newQualLevels %}
+  <ul class="govuk-list govuk-!-margin-bottom-0">
+    {# loops through and gets all the checked items  #}
+    {% for type in data.newQualLevels %}
+      <li>
+        {{ type }}
+      </li>
+    {% endfor %}
+  </ul>
+{% endset %}
+
+{% block pageTitle %}
+  {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-third">
+    {{ xGovukSubNavigation({
+      visuallyHiddenTitle: "Navigation",
+      items: [{
+        text: "Your Applications",
+        href: "/applications/index"
+      }, {
+        text: "Outcomes by subject",
+        href: "/applications/outcomes"
+      }, {
+        text: "Approved areas",
+        href: "/applications/approved-areas"
+      }, {
+        text: "Start another application",
+        href: "/applications/new",
+        current: true
+      }]
+    }) }}
+  </div>
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">Review your application</h1>
+    {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+    
+    <h2 class="govuk-heading-m">Work history</h2>
+    {{ govukSummaryList({
+        card: {
+          title: {
+            text: "Director"
+          }
+        },
+        rows: [
+          {
+            key: {
+              text: "Name of employer"
+            },
+            value: {
+              text: "ProPlace consulting Ltd."
+            }
+          },
+          {
+            key: {
+              text: "Job title"
+            },
+            value: {
+              text: "Director"
+            }
+          },
+          {
+            key: {
+              text: "Start date"
+            },
+            value: {
+              text: "June 2005"
+            }
+          },
+          {
+            key: {
+              text: "Are you still working in this role?"
+            },
+            value: {
+              text: "No"
+            }
+          },
+          {
+            key: {
+              text: "End date"
+            },
+            value: {
+              text: "March 2023"
+            }
+          }
+        ]
+      }) }}
+      
+      
+      {{ govukSummaryList({
+        card: {
+          title: {
+            text: "Director"
+          }
+        },
+        rows: [
+          {
+            key: {
+              text: "Name of employer"
+            },
+            value: {
+              text: "Wentworth Consultants"
+            }
+          },
+          {
+            key: {
+              text: "Job title"
+            },
+            value: {
+              text: "Finance Director"
+            }
+          },
+          {
+            key: {
+              text: "Start date"
+            },
+            value: {
+              text: "May 1996"
+            }
+          },
+          {
+            key: {
+              text: "Are you still working in this role?"
+            },
+            value: {
+              text: "No"
+            }
+          },
+          {
+            key: {
+              text: "End date"
+            },
+            value: {
+              text: "June 2005"
+            }
+          }
+        ]
+      }) }}
+    <h2 class="govuk-heading-m">Professional memberships</h2>
+    {{ govukSummaryList({
+        card: {
+          title: {
+            text: "Chartered Institute of Leadership"
+          }
+        },
+        rows: [
+          {
+            key: {
+              text: "Organisation name"
+            },
+            value: {
+              text: "Chartered Institute of Leadership"
+            }
+          },
+          {
+            key: {
+              text: "Membership type"
+            },
+            value: {
+              text: "Committee member"
+            }
+          },
+          {
+            key: {
+              text: "Year joined"
+            },
+            value: {
+              text: "2000"
+            }
+          }
+        ]
+      }) }}
+    <h2 class="govuk-heading-m">Education details</h2>
+    {{ govukSummaryList({
+        card: {
+          title: {
+            text: "Award in Strategic Management and Leadership"
+          }
+        },
+        rows: [
+          {
+            key: {
+              text: "College, school, training provider, university or other organisation"
+            },
+            value: {
+              text: "CVS Management and leadership school"
+            }
+          },
+          {
+            key: {
+              text: "Awarding organisation"
+            },
+            value: {
+              text: "Not provided"
+            }
+          },
+          {
+            key: {
+              text: "Qualification, course or subject name"
+            },
+            value: {
+              text: "Award in Strategic Management and Leadership"
+            }
+          },
+          {
+            key: {
+              text: "Grade"
+            },
+            value: {
+              text: "Pass"
+            }
+          },
+          {
+            key: {
+              text: "Year qualification was awarded"
+            },
+            value: {
+              text: "1995"
+            }
+          },
+          {
+            key: {
+              text: "Certificate uploaded"
+            },
+            value: {
+              text: "No"
+            }
+          },
+          {
+            key: {
+              text: "Reason for not being able to upload a certificate for this qualification"
+            },
+            value: {
+              text: "I have lost it temporarily but I have an email from the Awarding Organisation confirming I have the qualification while I am awaiting my replacement certificate"
+            }
+          }
+        ]
+      }) }}
+    <h2 class="govuk-heading-m">Conflicts of interest</h2>
+    {{ govukSummaryList({
+        card: {
+          title: {
+            text: "Advanced Qualifications ltd."
+          }
+        },
+        rows: [
+          {
+            key: {
+              text: "Name of organisation"
+            },
+            value: {
+              text: "Advanced Qualifications ltd."
+            }
+          },
+          {
+            key: {
+              text: "Type of conflict"
+            },
+            value: {
+              text: "I work for an Awarding Organisation as an external consultant or advisor"
+            }
+          },
+          {
+            key: {
+              text: "Details of conflict"
+            },
+            value: {
+              text: "I work for an awarding organisation, but I am not employed. I am contracted externally. I am training, assessor, and examiner for the qualification they award. I would put the detail of the years I was an assessor for them and if I am no longer doing any work for them I'd make it clear I haven't and don't do any work for them etc."
+            }
+          },
+          {
+            key: {
+              text: "Start date"
+            },
+            value: {
+              text: "June 2005"
+            }
+          },
+          {
+            key: {
+              text: "Is this a current conflict of interest?"
+            },
+            value: {
+              text: "No"
+            }
+          },
+          {
+            key: {
+              text: "End date"
+            },
+            value: {
+              text: "March 2015"
+            }
+          }
+        ]
+      }) }}
+    <h2 class="govuk-heading-m">Areas you are reapplying for</h2>
+{{ govukSummaryList({
+  card: {
+    title: {
+      text: "Management and Leadership"
+    },
+    actions: {
+      items: [
+        {
+          href: "#",
+          text: "Delete",
+          visuallyHiddenText: "Management and leadership, Vocationally-related qualification, level 6"
+        }
+      ]
+    }
+  },
+  rows: [
+  {
+    key: {
+      text: "Qualification type"
+    },
+    value: {
+      html: "Vocationally-related qualification"
+    },
+    actions: {
+      items: [
+        {
+          href: "#",
+          text: "Change",
+          visuallyHiddenText: "qualification type"
+        }
+      ]
+    }
+  },
+  {
+    key: {
+      text: "Qualification level"
+    },
+    value: {
+      html: "Level 6"
+    },
+    actions: {
+      items: [
+        {
+          href: "#",
+          text: "Change",
+          visuallyHiddenText: "qualification level"
+        }
+      ]
+    }
+  },
+  {
+      key: {
+        text: "Select areas you would like to reapply for"
+      },
+      value: {
+        html: "Teacher training"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "areas"
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+
+{{ govukSummaryList({
+  card: {
+    title: {
+      text: "Management and Leadership"
+    },
+    actions: {
+      items: [
+        {
+          href: "#",
+          text: "Delete",
+          visuallyHiddenText: "Management and leadership (Vocationally-related qualification - level 7)"
+        }
+      ]
+    }
+  },
+  rows: [
+  {
+    key: {
+      text: "Qualification type"
+    },
+    value: {
+      html: "Vocationally-related qualification"
+    },
+    actions: {
+      items: [
+        {
+          href: "#",
+          text: "Change",
+          visuallyHiddenText: "qualification type"
+        }
+      ]
+    }
+  },
+  {
+    key: {
+      text: "Qualification level"
+    },
+    value: {
+      html: "Level 7"
+    },
+    actions: {
+      items: [
+        {
+          href: "#",
+          text: "Change",
+          visuallyHiddenText: "qualification level"
+        }
+      ]
+    }
+  },
+  {
+      key: {
+        text: "Select areas you would like to reapply for"
+      },
+      value: {
+        html: subject2AreasHtml
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "areas"
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+
+{{ govukSummaryList({
+  card: {
+    title: {
+      text: "Management and Leadership"
+    },
+    actions: {
+      items: [
+        {
+          href: "#",
+          text: "Delete",
+          visuallyHiddenText: "Management and leadership (T-level - level 3)"
+        }
+      ]
+    }
+  },
+  rows: [
+  {
+    key: {
+      text: "Qualification type"
+    },
+    value: {
+      html: "T-level"
+    },
+    actions: {
+      items: [
+        {
+          href: "#",
+          text: "Change",
+          visuallyHiddenText: "qualification type"
+        }
+      ]
+    }
+  },
+  {
+    key: {
+      text: "Qualification level"
+    },
+    value: {
+      html: "Level 3"
+    },
+    actions: {
+      items: [
+        {
+          href: "#",
+          text: "Change",
+          visuallyHiddenText: "qualification level"
+        }
+      ]
+    }
+  },
+  {
+      key: {
+        text: "Select areas you would like to reapply for"
+      },
+      value: {
+        html: subject2AreasHtml
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "areas"
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+<h2 class="govuk-heading-m">New areas you are applying for</h2>
+{{ govukSummaryList({
+    card: {
+      title: {
+        text: data.resultName
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Delete",
+            visuallyHiddenText: data.resultName
+          }
+        ]
+      }
+    },
+    rows: [
+      {
+        key: {
+          text: "Qualification type"
+        },
+        value: {
+          html: data.newQualType
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "qualification type"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "Qualification level"
+        },
+        value: {
+          html: newQualLevels
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "qualification level"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "Areas of experience"
+        },
+        value: {
+          html: areasOfExperience
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "areas of experience"
+            }
+          ]
+        }
+      }
+    ]
+  }) }}
+  <h2 class="govuk-heading-m">Evidence</h2>
+  {{ govukSummaryList({
+    card: {
+      title: {
+        text: "Assessment evidence"
+      }
+    },
+    rows: [
+      {
+        key: {
+          text: "Designing and developing assessments"
+        },
+        value: {
+          text: "I would descsribe my involvement, activities and responsibilities to link with the information selected. I would include here a specific summary of my experience, relating to the subjects this expertise was selected for."
+        }
+      },
+      {
+        key: {
+          text: "Making assessment judgements"
+        },
+        value: {
+          text: "I've done a lot of training for exam boards. I'd detail the process of reviewing qualifications and assessments. I would include here a specific summary of my experience, relating to the subjects this expertise was selected for."
+        }
+      },
+      {
+        key: {
+          text: "Standard setting and awarding qualifications"
+        },
+        value: {
+          text: "I've run quite a few standards meetings. I've been a standards verifier for BTEC performing arts. I would include here a specific summary of my experience, relating to the subjects this expertise was selected for."
+        }
+      },
+      {
+        key: {
+          text: "Evaluating assessments or assessment approaches"
+        },
+        value: {
+          text: "Examiner for GCSE Performing Arts for AQA. Examiner for GCC drama and set the standards Btech Performing Arts. I would include here a specific summary of my experience, relating to the subjects this expertise was selected for."
+        }
+      }
+    ]
+  }) }}
+  
+  {{ govukSummaryList({
+    card: {
+      title: {
+        text: "Industry, occupational or professional evidence"
+      }
+    },
+    rows: [
+      {
+        key: {
+          text: "Industry, occupational or professional"
+        },
+        value: {
+          text: "I would descsribe my involvement, activities and responsibilities to link with the information selected. I would include here a specific summary of my experience, relating to the subjects this expertise was selected for."
+        }
+      }
+    ]
+  }) }}
+
+  {{ govukSummaryList({
+    card: {
+      title: {
+        text: "Teaching, lecturing or training evidence"
+      }
+    },
+    rows: [
+      {
+        key: {
+          text: "Teaching or lecturing"
+        },
+        value: {
+          text: "I would descsribe my involvement, activities and responsibilities to link with the information selected. I would include here a specific summary of my experience, relating to the subjects this expertise was selected for."
+        }
+      },
+      {
+        key: {
+          text: "Training"
+        },
+        value: {
+          text: "I've done a lot of training for exam boards. I'd detail the process of reviewing qualifications and assessments. I would include here a specific summary of my experience, relating to the subjects this expertise was selected for."
+        }
+      },
+      {
+        key: {
+          text: "Educational management"
+        },
+        value: {
+          text: "I've run quite a few standards meetings. I've been a standards verifier for BTEC performing arts. I would include here a specific summary of my experience, relating to the subjects this expertise was selected for."
+        }
+      },
+      {
+        key: {
+          text: "Teacher training"
+        },
+        value: {
+          text: "Examiner for GCSE Performing Arts for AQA. Examiner for GCC drama and set the standards Btech Performing Arts. I would include here a specific summary of my experience, relating to the subjects this expertise was selected for."
+        }
+      }
+    ]
+  }) }}
+
+      {% from "govuk/components/button/macro.njk" import govukButton %}
+      
+      {{ govukButton({
+        text: "Submit application",
+        href: "/applications/index"
+      }) }}
+      
+      </form>
+
+  </div>
+</div>
+
+{% endblock %}

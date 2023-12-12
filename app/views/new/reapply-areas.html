@@ -52,28 +52,54 @@
     }) }}
   </div>
   <div class="govuk-grid-column-two-thirds">
-    <form class="form" action="/new/is-reapply" method="post">
-      {% from "govuk/components/radios/macro.njk" import govukRadios %}
-      {{ govukRadios({
-        name: "isReapply",
-        fieldset: {
-          legend: {
-            text: "Do you want to reapply for something you have been previously unsuccessful in?",
-            isPageHeading: true,
-            classes: "govuk-fieldset__legend--l"
-          }
-        },
-        items: [
-          {
-            value: "yes",
-            text: "Yes, I want to apply for something I have previously been unsuccessful in"
-          },
-          {
-            value: "no",
-            text: "No, I want to apply for a new area"
-          }
-        ]
-      }) }}
+    <span class="govuk-caption-l">Reapply for previously unsuccessful areas</span>
+    <h1 class="govuk-heading-l">Select which areas you want to reapply for</h1>
+    <form class="form" action="/new/reapply-activities-1" method="post">
+      {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+{{ govukCheckboxes({
+  name: "reapplySubject1",
+  fieldset: {
+    legend: {
+      text: "Management and leadership",
+      isPageHeading: false,
+      classes: "govuk-fieldset__legend--m"
+    }
+  },
+  hint: {
+    text: "Vocational-related qualification"
+  },
+  items: [
+    {
+      value: "level 6",
+      text: "Level 6"
+    },
+    {
+      value: "level 7",
+      text: "Level 7"
+    }
+  ]
+}) }}
+
+{{ govukCheckboxes({
+  name: "reapplySubject2",
+  fieldset: {
+    legend: {
+      text: "Management and leadership",
+      isPageHeading: false,
+      classes: "govuk-fieldset__legend--m"
+    }
+  },
+  hint: {
+    text: "T-level"
+  },
+  items: [
+    {
+      value: "level 3",
+      text: "Level 3"
+    }
+  ]
+}) }}
       
       {% from "govuk/components/button/macro.njk" import govukButton %}
       

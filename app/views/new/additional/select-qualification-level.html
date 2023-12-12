@@ -1,0 +1,151 @@
+{% extends "di-govuk-one-login-service-header/layouts/service-header.html" %}
+{% set navigationItems = [
+  {
+    href: "/home.html",
+    text: 'Home',
+    id: 'home'
+  },{
+    href: "/your-details/personal-information.html",
+    text: 'Your details',
+    id: 'your-details'
+  },{
+    href: "/applications/index",
+    text: 'Applications',
+    id: 'applications'
+  },{
+    href: "/messages/index",
+    text: 'Messages',
+    id: 'messages'
+  },{
+    href: "/projects",
+    text: 'Projects',
+    id: 'projects'
+  }]
+%} 
+{% set activeLinkId = "applications" %}
+{% set signOutLink = "/index" %}
+
+{% set hintHtml %}
+    Select all that apply. Learn more about what <a href="https://www.gov.uk/what-different-qualification-levels-mean/list-of-qualification-levels" class="govuk-link" rel="noreferrer noopener" target="_blank">qualification levels mean (opens in new tab)</a>.
+  {% endset %}
+
+{% block pageTitle %}
+  {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-third">
+    {{ xGovukSubNavigation({
+      visuallyHiddenTitle: "Navigation",
+      items: [{
+        text: "Your Applications",
+        href: "/applications/index"
+      }, {
+        text: "Outcomes by subject",
+        href: "/applications/outcomes"
+      }, {
+        text: "Approved areas",
+        href: "/applications/approved-areas"
+      }, {
+        text: "Start another application",
+        href: "/applications/new",
+        current: true
+      }]
+    }) }}
+  </div>
+  <div class="govuk-grid-column-two-thirds">
+    <form class="form" action="/new/additional/select-activity" method="post">
+      {{ govukCheckboxes({
+        name: "newQualLevels",
+        fieldset: {
+          legend: {
+            text: "What qualification levels can you advise on for this subject or occupational area?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        hint: {
+          html: hintHtml
+        },
+        items: [
+          {
+            value: "Entry Level",
+            text: "Entry Level"
+          },
+          {
+            value: "Level 1",
+            text: "Level 1",
+            hint: {
+              text: "First certificate or GCSE - grade 3 or D and below"
+            }
+          },
+          {
+            value: "Level 2",
+            text: "Level 2",
+            hint: {
+              text: "Intermediate apprenticeship or GCSE - grade 4 or C and above"
+            }
+          },
+          {
+            value: "Level 3",
+            text: "Level 3",
+            hint: {
+              text: "AS/A level or advanced apprenticeship"
+            }
+          },
+          {
+            value: "Level 4",
+            text: "Level 4",
+            hint: {
+              text: "Certificate of higher education (CertHE) or higher apprenticeship"
+            }
+          },
+          {
+            value: "Level 5",
+            text: "Level 5",
+            hint: {
+              text: "Diploma of higher education (DipHE) or foundation degree"
+            }
+          },
+          {
+            value: "Level 6",
+            text: "Level 6",
+            hint: {
+              text: "Degree apprenticeship, degree with honours, graduate certificate or graduate diploma"
+            }
+          },
+          {
+            value: "Level 7",
+            text: "Level 7",
+            hint: {
+              text: "Master’s degree, postgraduate certificate or postgraduate diploma"
+            }
+          },
+          {
+            value: "Level 8",
+            text: "Level 8"
+          },
+          {
+            divider: "or"
+          },
+          {
+            value: "notQualLevel",
+            text: "My experience in this subject or occupational area is not related to a qualification level"
+          }
+        ]
+      }) }}
+      
+      {% from "govuk/components/button/macro.njk" import govukButton %}
+      
+      {{ govukButton({
+        text: "Save and continue"
+      }) }}
+      
+      </form>
+
+  </div>
+</div>
+
+{% endblock %}

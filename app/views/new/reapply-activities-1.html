@@ -1,0 +1,94 @@
+{% extends "di-govuk-one-login-service-header/layouts/service-header.html" %}
+{% set navigationItems = [
+  {
+    href: "/home.html",
+    text: 'Home',
+    id: 'home'
+  },{
+    href: "/your-details/personal-information.html",
+    text: 'Your details',
+    id: 'your-details'
+  },{
+    href: "/applications/index",
+    text: 'Applications',
+    id: 'applications'
+  },{
+    href: "/messages/index",
+    text: 'Messages',
+    id: 'messages'
+  },{
+    href: "/projects",
+    text: 'Projects',
+    id: 'projects'
+  }]
+%} 
+{% set activeLinkId = "applications" %}
+{% set signOutLink = "/index" %}
+
+{% block pageTitle %}
+  {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-third">
+    {{ xGovukSubNavigation({
+      visuallyHiddenTitle: "Navigation",
+      items: [{
+        text: "Your Applications",
+        href: "/applications/index"
+      }, {
+        text: "Outcomes by subject",
+        href: "/applications/outcomes"
+      }, {
+        text: "Approved areas",
+        href: "/applications/approved-areas"
+      }, {
+        text: "Start another application",
+        href: "/applications/new",
+        current: true
+      }]
+    }) }}
+  </div>
+  <div class="govuk-grid-column-two-thirds">
+    <span class="govuk-caption-l">Vocationally-related qualification - level 6</span>
+    <h1 class="govuk-heading-l">Management and Leadership</h1>
+    <form class="form" action="/new/reapply-activities-2" method="post">
+    <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset" aria-describedby="Teaching, lecturing and training options">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+          <h2 class="govuk-fieldset__heading">
+              Teaching, lecturing and training
+          </h2>
+        </legend>
+        <div id="teaching-expertise-hint" class="govuk-hint">
+            Developing classroom materials, training others, knowledge of specifications and qualification standards in this subject, management of curriculum areas and organisation.
+        </div>
+        <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="additionalTeachingExpertise" name="additionalTeachingExpertise" type="checkbox" value="additionalTeachingExpertise">
+        <label class="govuk-label govuk-checkboxes__label" for="addTeachTraining">
+          Teacher training
+          <strong class="govuk-tag govuk-tag--red">
+            Unsuccessful
+          </strong>
+        </label>
+        <div id="addTeachTraining-item-hint" class="govuk-hint govuk-checkboxes__hint">
+          Teaching on a PGCE or similar course, tutoring, mentoring trainee teachers or trainers.
+        </div>
+      </div>
+    </fieldset>
+  </div>
+      {% from "govuk/components/button/macro.njk" import govukButton %}
+      
+      {{ govukButton({
+        text: "Save and continue"
+      }) }}
+      
+      </form>
+
+  </div>
+</div>
+
+{% endblock %}

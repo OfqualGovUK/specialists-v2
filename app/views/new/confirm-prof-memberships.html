@@ -52,118 +52,48 @@
     }) }}
   </div>
 <div class="govuk-grid-column-two-thirds">
-<h1 class="govuk-heading-l">Confirm or update your work history</h1>
+<h1 class="govuk-heading-l">Confirm or update your professional memberships</h1>
 
 {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 
 {{ govukSummaryList({
   card: {
     title: {
-      text: "Director"
+      text: "Chartered Institute of Leadership"
     }
   },
   rows: [
     {
       key: {
-        text: "Name of employer"
+        text: "Organisation name"
       },
       value: {
-        text: "ProPlace consulting Ltd."
+        text: "Chartered Institute of Leadership"
       }
     },
     {
       key: {
-        text: "Job title"
+        text: "Membership type"
       },
       value: {
-        text: "Director"
+        text: "Committee member"
       }
     },
     {
       key: {
-        text: "Start date"
+        text: "Year joined"
       },
       value: {
-        text: "June 2005"
-      }
-    },
-    {
-      key: {
-        text: "Are you still working in this role?"
-      },
-      value: {
-        text: "No"
-      }
-    },
-    {
-      key: {
-        text: "End date"
-      },
-      value: {
-        text: "March 2023"
+        text: "2000"
       }
     }
   ]
 }) }}
 
-
-{{ govukSummaryList({
-  card: {
-    title: {
-      text: "Director"
-    }
-  },
-  rows: [
-    {
-      key: {
-        text: "Name of employer"
-      },
-      value: {
-        text: "Wentworth Consultants"
-      }
-    },
-    {
-      key: {
-        text: "Job title"
-      },
-      value: {
-        text: "Finance Director"
-      }
-    },
-    {
-      key: {
-        text: "Start date"
-      },
-      value: {
-        text: "May 1996"
-      }
-    },
-    {
-      key: {
-        text: "Are you still working in this role?"
-      },
-      value: {
-        text: "No"
-      }
-    },
-    {
-      key: {
-        text: "End date"
-      },
-      value: {
-        text: "June 2005"
-      }
-    }
-  ]
-}) }}
-
-
-
-
-<form class="form" action="/new/work-history-complete" method="post">
+<form class="form" action="/new/prof-memberships-complete" method="post">
 {% from "govuk/components/radios/macro.njk" import govukRadios %}
 {{ govukRadios({
-  name: "WorkHistoryCorrect",
+  name: "ProfMembershipsCorrect",
   fieldset: {
     legend: {
       text: "Are these details correct?",
@@ -178,7 +108,7 @@
     },
     {
       value: "no",
-      text: "No, update or add another role"
+      text: "No, update or add another membership"
     }
   ]
 }) }}

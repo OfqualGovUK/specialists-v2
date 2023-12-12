@@ -51,39 +51,39 @@
       }]
     }) }}
   </div>
-  <div class="govuk-grid-column-two-thirds">
-    <form class="form" action="/new/is-reapply" method="post">
-      {% from "govuk/components/radios/macro.njk" import govukRadios %}
-      {{ govukRadios({
-        name: "isReapply",
-        fieldset: {
-          legend: {
-            text: "Do you want to reapply for something you have been previously unsuccessful in?",
-            isPageHeading: true,
-            classes: "govuk-fieldset__legend--l"
-          }
-        },
-        items: [
-          {
-            value: "yes",
-            text: "Yes, I want to apply for something I have previously been unsuccessful in"
-          },
-          {
-            value: "no",
-            text: "No, I want to apply for a new area"
-          }
-        ]
-      }) }}
-      
-      {% from "govuk/components/button/macro.njk" import govukButton %}
-      
-      {{ govukButton({
-        text: "Save and continue"
-      }) }}
-      
-      </form>
+<div class="govuk-grid-column-two-thirds">
 
-  </div>
+<form class="form" action="/new/application-2" method="post">
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{{ govukRadios({
+  name: "confirmProfMemberships",
+  fieldset: {
+    legend: {
+      text: "Have you completed this section?",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--l"
+    }
+  },
+  items: [
+    {
+      value: "complete",
+      text: "Yes, I have completed this section"
+    },
+    {
+      value: "inProgress",
+      text: "No, I'll come back to it later"
+    }
+  ]
+}) }}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{{ govukButton({
+  text: "Save and continue"
+}) }}
+
+</form>
+
 </div>
-
+</div>
 {% endblock %}

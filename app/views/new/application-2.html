@@ -53,113 +53,101 @@
   </div>
 <div class="govuk-grid-column-two-thirds">
 <h1 class="govuk-heading-l">Start another application</h1>
+{% from "_components/task-list-2/macro.html"             import appTaskListItem %}
 
 <!-- start of task list-->
-<h2 class="govuk-heading-m">1. Your details</h2>
-{{ govukTaskList({
-  idPrefix: "confirm-details",
-  items: [
-    {
-      title: {
-        text: "Work history"
-      },
-      hint:{
-        text: "Confirm or update your work history"
-      },
-      href: "/new/confirm-work-history",
-      status: {
-        classes: "govuk-task-list__status--blue",
-         text: "Incomplete"
-      }
-    },
-    {
-    title: {
-        text: "Education details"
-    },
-    hint:{
-        text: "Confirm or update your education details"
-    },
-    href: "#",
-    status: {
-        classes: "govuk-task-list__status--blue",
-        text: "Incomplete"
-    }
-    },
-    {
-    title: {
-        text: "Conflicts of interest"
-    },
-    hint:{
-        text: "Confirm or update conflicts of interests"
-    },
-    href: "#",
-    status: {
-        classes: "govuk-task-list__status--blue",
-        text: "Incomplete"
-    }
-    }
-  ]
-}) }}
+<section class="govuk-!-margin-bottom-8">
+    <h2 class="govuk-heading-m govuk-!-font-size-27">1. Your details</h2>
+    <ul class="app-task-list">
+      {{ appTaskListItem({
+        name: 'Confirm or update your work history',
+        href: '/new/confirm-work-history',
+        taskName: data.confirmWorkHistory
+      })}}
+      {{ appTaskListItem({
+        name: 'Confirm or update your professional memberships',
+        href: '/new/confirm-prof-memberships',
+        taskName: data.confirmProfMemberships
+      })}}
+      {{ appTaskListItem({
+        name: 'Confirm or update your education details',
+        href: '/new/confirm-education',
+        _href: '#',
+        taskName: data.confirmEducation
+      })}}
+      {{ appTaskListItem({
+        name: 'Confirm or update your conflicts of interest',
+        href: '/new/confirm-conflicts',
+        taskName: data.confirmConflicts
+      })}}
+    </ul>
+  </section>
 
-<h2 class="govuk-heading-m">2. Select what you want to apply for</h2>
-{{ govukTaskList({
-  idPrefix: "subject-select",
-  items: [
-    {
-      title: {
-        text: "Select the areas you want to apply for"
-      },
-      hint:{
-        text: "You can reapply for unsuccessful areas or apply for new ones"
-    },
-      href: "#",
-      status: {
-        classes: "govuk-task-list__status--blue",
-         text: "Incomplete"
-      }
-    }
-  ]
-}) }}
+  <section class="govuk-!-margin-bottom-8">
+    <h2 class="govuk-heading-m govuk-!-font-size-27">2. Select what you want to apply for</h2>
+    <ul class="app-task-list">
+      {{ appTaskListItem({
+        name: 'Reapply for previously unsuccessful areas',
+        href: '/new/reapply',
+        hint: "Apply for a new area",
+        taskName: data.confirmReapply
+      })}}
+      {{ appTaskListItem({
+        name: 'Apply for new areas',
+        href: '/new/additional/apply-new-area',
+        hint: "You can reapply for unsuccessful areas or apply for new ones",
+        taskName: data.adviseAreasCompleted
+      })}}
+    </ul>
+  </section>
 
-<h2 class="govuk-heading-m">3. Evidence of your experience</h2>
-{{ govukTaskList({
-  idPrefix: "evidence-of-experience",
-  items: [
-  {
-    title: {
-        text: "Add your evidence of experience"
-    },
-    hint:{
-        text: "You must complete the previous section first"
-    },
-    href: "#",
-    status: {
-        classes: "govuk-task-list__status--grey",
-        text: "Cannot start yet"
-    }
-    }
-  ]
-}) }}
+<section class="govuk-!-margin-bottom-8">
+  <h2 class="govuk-heading-m govuk-!-font-size-27">3. Evidence of experience</h2>
+  <ul class="app-task-list">
+    {# If the Subjects of experience is complete #}
+    {% if data.adviseAreasCompleted == "complete" %}
+        {{ appTaskListItem ({
+            name: 'Assessment experience',
+            href: '/assessment-type-answer',
+            taskName: data.adviseAreasCompleted
+        })}}
+        {{ appTaskListItem ({
+            name: 'Industry, occupational or professional experience',
+            href: '/application/industry-experience',
+            taskName: data.adviseAreasCompleted
+        })}}
+        {{ appTaskListItem ({
+            name: 'Teaching, lecturing or training experience',
+            href: '/teaching-experience',
+            taskName: data.adviseAreasCompleted
+        })}}
+        {{ appTaskListItem({
+        name: 'Further supporting evidence',
+        href: 'application/further-evidence',
+        taskName: data.adviseAreasCompleted
+        })}}
+        {# Otherwise Subjects of experience IS NOT complete #}
+        {% else %}
+        {{ appTaskListItem({
+        name: 'Add evidence of your experience',
+        href: 'application/',
+        hint: "Complete the areas you want to apply for first",
+        taskName: data.evidenceExpertiseCompleted
+        })}}
+    {% endif %}
+  </ul>
+</section>
 
-<h2 class="govuk-heading-m">4. Review and submit</h2>
-{{ govukTaskList({
-  idPrefix: "review-submit",
-  items: [
-  {
-    title: {
-        text: "Review and submit your application"
-    },
-    hint:{
-        text: "You must complete all sections first"
-    },
-    href: "#",
-    status: {
-        classes: "govuk-task-list__status--grey",
-        text: "Cannot start yet"
-    }
-    }
-  ]
-}) }}
+<section class="govuk-!-margin-bottom-8">
+    <h2 class="govuk-heading-m govuk-!-font-size-27">4. Review and submit</h2>
+    <ul class="app-task-list">
+      {{ appTaskListItem({
+        name: 'Review and submit your application',
+        href: '/new/review',
+        taskName: data.educationCompleted
+      })}}
+    </ul>
+  </section>
 
 <!-- End of task list-->
 

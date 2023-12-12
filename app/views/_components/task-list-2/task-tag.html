@@ -1,0 +1,33 @@
+{% macro appTaskTag(taskName) %}
+
+  {% set completeTagHTML %}
+    <span class="govuk-visually-hidden">Status</span>
+    <strong class="govuk-tag">Completed</strong>
+  {% endset %}
+
+  {% set inProgressTagHTML %}
+    <span class="govuk-visually-hidden">Status</span>
+    <strong class="govuk-tag govuk-tag--blue">In Progress</strong>
+  {% endset %}
+
+  {% set notStartedTagHTML %}
+    <span class="govuk-visually-hidden">Status</span>
+    <strong class="govuk-tag govuk-tag--grey">Not started</strong>
+  {% endset %}
+
+  {% set canNotStartTagHTML %}
+    <span class="govuk-visually-hidden">Status</span>
+    <strong class="govuk-tag govuk-tag--grey">Cannot start yet</strong>
+  {% endset %}
+
+	{% if taskName == 'canNotStartYet' %}
+		{{ canNotStartTagHTML | safe }}
+  {% elseif taskName == 'complete' %}
+		{{ completeTagHTML | safe }}
+	{% elseif taskName == 'inProgress' %}
+		{{ inProgressTagHTML | safe }}
+	{% else %}
+		{{ notStartedTagHTML | safe }}
+	{% endif %}
+
+{% endmacro %}

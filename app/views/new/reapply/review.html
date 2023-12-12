@@ -1,0 +1,294 @@
+{% extends "di-govuk-one-login-service-header/layouts/service-header.html" %}
+{% set navigationItems = [
+  {
+    href: "/home.html",
+    text: 'Home',
+    id: 'home'
+  },{
+    href: "/your-details/personal-information.html",
+    text: 'Your details',
+    id: 'your-details'
+  },{
+    href: "/applications/index",
+    text: 'Applications',
+    id: 'applications'
+  },{
+    href: "/messages/index",
+    text: 'Messages',
+    id: 'messages'
+  },{
+    href: "/projects",
+    text: 'Projects',
+    id: 'projects'
+  }]
+%} 
+{% set activeLinkId = "applications" %}
+{% set signOutLink = "/index" %}
+
+{% set subject2AreasHtml %}
+  <ul class="govuk-list">
+      <li>Designing and developing assessments</li>
+      <li>Making assessment judgements</li>
+      <li>Standard setting and awarding qualifications</li>
+      <li>Evaluating assessments or assessment approaches</li>
+      <li>Industry, occupational or professional</li>
+      <li>Teaching or lecturing</li>
+      <li>Teacher training</li>
+  </ul>
+{% endset %}
+
+{% block pageTitle %}
+  {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-third">
+    {{ xGovukSubNavigation({
+      visuallyHiddenTitle: "Navigation",
+      items: [{
+        text: "Your Applications",
+        href: "/applications/index"
+      }, {
+        text: "Outcomes by subject",
+        href: "/applications/outcomes"
+      }, {
+        text: "Approved areas",
+        href: "/applications/approved-areas"
+      }, {
+        text: "Start another application",
+        href: "/applications/new",
+        current: true
+      }]
+    }) }}
+  </div>
+  <div class="govuk-grid-column-two-thirds">
+    <span class="govuk-caption-l">Reapply for previously unsuccessful areas</span>
+    <h1 class="govuk-heading-l">Review the areas you want to reapply for</h1>
+    {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{{ govukSummaryList({
+  card: {
+    title: {
+      text: "Management and Leadership"
+    },
+    actions: {
+      items: [
+        {
+          href: "#",
+          text: "Delete",
+          visuallyHiddenText: "Management and leadership, Vocationally-related qualification, level 6"
+        }
+      ]
+    }
+  },
+  rows: [
+  {
+    key: {
+      text: "Qualification type"
+    },
+    value: {
+      html: "Vocationally-related qualification"
+    },
+    actions: {
+      items: [
+        {
+          href: "#",
+          text: "Change",
+          visuallyHiddenText: "qualification type"
+        }
+      ]
+    }
+  },
+  {
+    key: {
+      text: "Qualification level"
+    },
+    value: {
+      html: "Level 6"
+    },
+    actions: {
+      items: [
+        {
+          href: "#",
+          text: "Change",
+          visuallyHiddenText: "qualification level"
+        }
+      ]
+    }
+  },
+  {
+      key: {
+        text: "Select areas you would like to reapply for"
+      },
+      value: {
+        html: "Teacher training"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "areas"
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+
+{{ govukSummaryList({
+  card: {
+    title: {
+      text: "Management and Leadership"
+    },
+    actions: {
+      items: [
+        {
+          href: "#",
+          text: "Delete",
+          visuallyHiddenText: "Management and leadership (Vocationally-related qualification - level 7)"
+        }
+      ]
+    }
+  },
+  rows: [
+  {
+    key: {
+      text: "Qualification type"
+    },
+    value: {
+      html: "Vocationally-related qualification"
+    },
+    actions: {
+      items: [
+        {
+          href: "#",
+          text: "Change",
+          visuallyHiddenText: "qualification type"
+        }
+      ]
+    }
+  },
+  {
+    key: {
+      text: "Qualification level"
+    },
+    value: {
+      html: "Level 7"
+    },
+    actions: {
+      items: [
+        {
+          href: "#",
+          text: "Change",
+          visuallyHiddenText: "qualification level"
+        }
+      ]
+    }
+  },
+  {
+      key: {
+        text: "Select areas you would like to reapply for"
+      },
+      value: {
+        html: subject2AreasHtml
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "areas"
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+
+{{ govukSummaryList({
+  card: {
+    title: {
+      text: "Management and Leadership"
+    },
+    actions: {
+      items: [
+        {
+          href: "#",
+          text: "Delete",
+          visuallyHiddenText: "Management and leadership (T-level - level 3)"
+        }
+      ]
+    }
+  },
+  rows: [
+  {
+    key: {
+      text: "Qualification type"
+    },
+    value: {
+      html: "T-level"
+    },
+    actions: {
+      items: [
+        {
+          href: "#",
+          text: "Change",
+          visuallyHiddenText: "qualification type"
+        }
+      ]
+    }
+  },
+  {
+    key: {
+      text: "Qualification level"
+    },
+    value: {
+      html: "Level 3"
+    },
+    actions: {
+      items: [
+        {
+          href: "#",
+          text: "Change",
+          visuallyHiddenText: "qualification level"
+        }
+      ]
+    }
+  },
+  {
+      key: {
+        text: "Select areas you would like to reapply for"
+      },
+      value: {
+        html: subject2AreasHtml
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "areas"
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+
+    
+      {% from "govuk/components/button/macro.njk" import govukButton %}
+      
+      {{ govukButton({
+        text: "Save and continue",
+        href: "/new/reapply-complete"
+      }) }}
+      
+      </form>
+
+  </div>
+</div>
+
+{% endblock %}

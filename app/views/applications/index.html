@@ -53,6 +53,24 @@
   </div>
   <div class="govuk-grid-column-two-thirds">
     <h1 class="govuk-heading-l">Applications</h1>
+    {% if data.adviseAreasCompleted == "complete" %}
+    {% from "govuk/components/notification-banner/macro.njk" import govukNotificationBanner %}
+
+{% set success %}
+  <h3 class="govuk-notification-banner__heading">
+    Application sent
+  </h3>
+  <p class="govuk-body">You will receive your outcomes within 60 days.</p>
+{% endset %}
+
+{{ govukNotificationBanner({
+  html: success,
+  type: "success"
+}) }}
+
+    {% endif %}
+
+
     <table class="govuk-table">
       <thead class="govuk-table__head">
         <tr class="govuk-table__row">
@@ -71,6 +89,17 @@
             </strong>
           </td>
         </tr>
+        {% if data.adviseAreasCompleted == "complete" %}
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell"><a href="/applications/application-2" class="govuk-link">Application 2</a></td>
+          <td class="govuk-table__cell">Today</td>
+          <td class="govuk-table__cell">
+            <strong class="govuk-tag govuk-tag--purple">
+              Awaiting decision
+            </strong>
+          </td>
+        </tr>
+        {% endif %}
         </tbody>
       </table>
   </div>

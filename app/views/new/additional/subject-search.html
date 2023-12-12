@@ -1,0 +1,181 @@
+{% extends "di-govuk-one-login-service-header/layouts/service-header.html" %}
+{% set navigationItems = [
+  {
+    href: "/home.html",
+    text: 'Home',
+    id: 'home'
+  },{
+    href: "/your-details/personal-information.html",
+    text: 'Your details',
+    id: 'your-details'
+  },{
+    href: "/applications/index",
+    text: 'Applications',
+    id: 'applications'
+  },{
+    href: "/messages/index",
+    text: 'Messages',
+    id: 'messages'
+  },{
+    href: "/projects",
+    text: 'Projects',
+    id: 'projects'
+  }]
+%} 
+{% set activeLinkId = "applications" %}
+{% set signOutLink = "/index" %}
+
+{% block pageTitle %}
+  {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-third">
+    {{ xGovukSubNavigation({
+      visuallyHiddenTitle: "Navigation",
+      items: [{
+        text: "Your Applications",
+        href: "/applications/index"
+      }, {
+        text: "Outcomes by subject",
+        href: "/applications/outcomes"
+      }, {
+        text: "Approved areas",
+        href: "/applications/approved-areas"
+      }, {
+        text: "Start another application",
+        href: "/applications/new",
+        current: true
+      }]
+    }) }}
+  </div>
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">Search for a subject or occupational area</h1>
+    <form class="form" action="/subject-search-answer" method="post">
+      {# Note for future designers - Jesse built this with Joe. This has been taken from the original experts-prototype #}
+      {# Joe Ingledew helped me build this feature and I apologise in advance for it being held together with sticky tape and bubble gum! #}
+    
+      {# This section is populated by data found here: /data/subjectSearchData2.json #}
+
+      {# set up which data set to pull from depednng on which route was chosen #}
+  {% set occupations = []  %}
+  
+  {% for occupation in data.allOccupationData  %}
+    {% set occupations = occupations | push ({ 
+      text: occupation
+    }) %}
+  {% endfor %}
+    
+      {% set sub = []  %}
+      
+      {% for s in data.subjectSearch2Data  %}
+        {% set sub = sub | push ({ 
+          name: s.name,
+          qualType: s.qualType,
+          level: s.level
+        }) %}
+      {% endfor %}
+    
+        <div class="body-text">
+          <label for="autocomplete-placeholder" class="govuk-label govuk-label--l">{{ pageHeading }}</label>
+          {# <p class="govuk-body">You will be able to add more subjects, apprenticeships or T Levels after you tell us about the first one.</p> #}
+          <div id="subject-hint" class="govuk-hint">
+            You will be able to add more subject or occupational areas after you have finished telling us about the first one.
+          </div>
+          <div id="tt-default" class="autocomplete-wrapper govuk-!-margin-bottom-6"></div>
+        </div>
+    
+        <input type="hidden" id="selectedObject" name="selectedObject" for="selectedObject" value="{}" />
+        <input type="hidden" id="resultId" name="resultId" for="resultId" value="" />
+        <input type="hidden" id="resultName" name="resultName" for="resultName" value="" />
+        <input type="hidden" id="resultQualType" name="resultQualType" for="resultQualType" value="" />
+        <input type="hidden" id="resultLevel" name="resultLevel" for="resultLevel" value="" />
+    
+        <script type="text/javascript" src="/public/javascripts/accessible-autocomplete.min.js"></script>
+    
+        <script type="text/javascript">
+    
+          let rawResults = [
+            {% for s in data.subjectSearch2Data %}
+              { "name": "{{s.name}}", "qualType": "{{s.qualType}}", "level": "{{s.level}}" },
+            {% endfor %}
+          ]
+    
+          const results = rawResults.map((x, ix) => ({ id: ix, ...x }))
+    
+          var getSuggestions = () => {
+            var suggestions = []
+            results.forEach(result => suggestions.push(result.name));
+            return suggestions;
+          }
+    
+          function suggest(query, populateResults) {
+            const filteredResults = results.filter(x => x.name.toLowerCase().includes(query.toLowerCase()))
+            populateResults(filteredResults)
+          }
+    
+          function onConfirm(confirmedValue) {
+            if (!!confirmedValue) {
+              $("#resultId").val(confirmedValue.id)
+              $("#resultName").val(confirmedValue.name)
+              $("#resultQualType").val(confirmedValue.qualType)
+              $("#resultLevel").val(confirmedValue.level)
+              $('#selectedObject').val(JSON.stringify(confirmedValue))
+            }
+          }
+    
+          var element = document.querySelector('#tt-default')
+          var id = 'autocomplete-default'
+          accessibleAutocomplete({
+            element: element,
+            id: id,
+            source: suggest,
+            onConfirm: onConfirm,
+            name: "selectedSubject2",
+            templates: {
+              suggestion: (value) => {
+                var result = results.find(result => result.id == value.id)
+                let finalHtml = `<span class='job-title'>${result.name}</span>`
+                if (result.qualType === "End-point assessment" || result.qualType === "T Level") {
+                  finalHtml = `${finalHtml}<span class='govuk-hint govuk-!-margin-bottom-0'>${result.qualType}</span><span class='govuk-hint govuk-!-margin-bottom-0'> (level ${result.level})</span>`
+                }
+                return finalHtml
+              },
+              inputValue: (selection) => {
+                if (!!selection) {
+                  let finalVal = selection.name
+                  if (selection.qualType === "End-point assessment" || selection.qualType === "T Level") {
+                    finalVal = `${selection.name} (${selection.qualType} - level ${selection.level})`
+                  }
+                  return finalVal
+                }
+                return ""
+              }
+            }
+          })
+        </script>
+      
+      {% set detailsHtml %}
+        <p class="govuk-body govuk-!-margin-bottom-0">
+          If you cannot your subject or occupational area, find the closest match.
+        </p>
+      {% endset %}
+    
+      {{ govukDetails({
+        summaryText: "I cannot find the subject or occupational area",
+        text: detailsHtml | safe
+      }) }}
+    
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: "Save and continue"
+        }) }} 
+      
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}
